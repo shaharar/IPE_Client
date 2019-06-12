@@ -1,12 +1,12 @@
 angular.module("parisApp")
-.controller("indexController", function ($scope) {
+.controller("indexController", function ($rootScope) {
     self = this;
-    $scope.username = "Guest";
-    $scope.isLogin = false;
+    $rootScope.username = "Guest";
+    $rootScope.isLogin = false;
 
     self.logout=function(){
-        $scope.username = "Guest";
-        $scope.isLogin = false;
+        $rootScope.username = "Guest";
+        $rootScope.isLogin = false;
 
 
     }
@@ -14,5 +14,5 @@ angular.module("parisApp")
     var xml = new XMLHttpRequest();
     xml.open("GET", "./countries.xml", true);
     //xml.send();
-    $scope.myXML=xml;
+    $rootScope.myXML=xml;
 });

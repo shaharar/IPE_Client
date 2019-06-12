@@ -5,13 +5,13 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body ng-controller="indexController">
-        <nav class="menu">
-            <li><a ng-if="!$root.isLogin" href="#/Login">Login</a></li>
-            <li><a ng-if="$root.isLogin" ng-click="indexController.logout()" href="#/">Logout</a></li>
+        <nav>
+            <li><a>Hello {{$root.username}} </a></li>
             <li><a href="#/">Home</a></li>
             <li><a href="#/Pois">POIs</a></li>
             <li><a href="#/about">About</a></li>
-            <li><a>Hello {{$root.username}} </a></li>
+            <li><a ng-if="!$root.isLogin" href="#/Login">Login</a></li>
+            <li><a ng-if="$root.isLogin" ng-click="indexController.logout()" href="#/">Logout</a></li>
         </nav>
 
     <div  ng-view></div>
