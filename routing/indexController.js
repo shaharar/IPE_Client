@@ -13,6 +13,6 @@ angular.module("parisApp")
     
     var xml = new XMLHttpRequest();
     xml.open("GET", "./countries.xml", true);
-    // xml.send();
+    //xml.send();
     $scope.myXML=xml;
 });
