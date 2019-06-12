@@ -3,12 +3,18 @@
     <head>
 
     </head>
+    <body ng-app="ParisApp" ng-controller="indexController">
+        <nav class="menu">
+            <li><a ng-if="!$root.isLogin" href="#/Login">Login</a></li>
+            <li><a ng-if="$root.isLogin" ng-click="indexController.logout()" href="#/">Logout</a></li>
+            <li><a href="#/">Home</a></li>
+            <li><a href="#/Pois">POIs</a></li>
+            <li><a href="#/about">About</a></li>
+            <li><a>Hello {{$root.username}} </a></li>
+        </nav>
 
-    <body ng-app="ParisApp"> 
-        
-        
-        
-        
+    <div  ng-view></div>
+
         <!--load angularjs-->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
         <script src=“https://code.angularjs.org/1.7.8/angular-route.js”></script>
@@ -24,7 +30,6 @@
         <script src="Modules/POI/poiController.js"></script>
         <script src="Modules/Register/registerController.js"></script>
         <script src="Modules/Welcome/welcomeController.js"></script>
-
 
     </body>
 </html>
