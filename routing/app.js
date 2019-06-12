@@ -2,10 +2,10 @@ let app = angular.module('parisApp', ["ngRoute"]);
 app.config(function($routeProvider)  {
     $routeProvider
         // homepage
-        // .when('/', {
-        //     templateUrl: 'Modules/Welcome/welcome.html',
-        //     controller : 'welcomeController as welcmCtrl'
-        // })
+        .when('/', {
+            templateUrl: 'Modules/Welcome/welcome.html',
+            controller : 'welcomeController as welcmCtrl'
+        })
         // Welcome
         .when('/welcome', {
             templateUrl: 'Modules/Welcome/welcome.html',

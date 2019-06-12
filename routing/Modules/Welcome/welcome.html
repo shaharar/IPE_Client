@@ -1,0 +1,13 @@
+<div ng-init="welcmCtrl.start()">
+
+<div ng-if="!$root.isLogin" ng-init="welcmCtrl.get3RandomPois()">
+    <h1> Welcome to Paris App </h1>
+    <p>You are currently not logged in. If you don't have an account please press the button below to register, otherwise login</p>
+    <button id="registerBtn" ng-click="welcmCtrl.register()" ></button>
+
+    <div class="row">
+        <div class="column" ng-repeat="rPOI in welcmCtrl.randPOIs">
+            <img ng-src="{{rPOI.Picture}}" style="width:100%" ng-click="getPoiInfo(rPOI.ID)">
+        </div>
+    </div>
+</div>

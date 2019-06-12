@@ -11,8 +11,8 @@ angular.module("parisApp")
 
     }
     
-    var xml = new XMLHttpRequest();
-    xml.open("GET", "./countries.xml", true);
-    //xml.send();
-    $rootScope.myXML=xml;
+    // var xml = new XMLHttpRequest();
+    // xml.open("GET", "./countries.xml", true);
+    // //xml.send();
+    // $rootScope.myXML=xml;
 });
