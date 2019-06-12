@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="parisApp">
     <head>
-
+        <title>Paris App</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
-    <body ng-app="ParisApp" ng-controller="indexController">
+    <body ng-controller="indexController">
         <nav class="menu">
             <li><a ng-if="!$root.isLogin" href="#/Login">Login</a></li>
             <li><a ng-if="$root.isLogin" ng-click="indexController.logout()" href="#/">Logout</a></li>
@@ -16,8 +17,8 @@
     <div  ng-view></div>
 
         <!--load angularjs-->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
-        <script src=“https://code.angularjs.org/1.7.8/angular-route.js”></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script> 
 
         <!--load app-->
         <script src="app.js"></script>
