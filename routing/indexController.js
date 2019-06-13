@@ -1,11 +1,13 @@
 angular.module("parisApp")
 .controller("indexController", function ($rootScope) {
+    console.log("enter index controller")
     self = this;
     $rootScope.username = "Guest";
-    $rootScope.isLogin = false;
+    $rootScope.isLogin = true;
 
     self.logout=function(){
-        $rootScope.username = "Guest";
+        console.log("enter logout")
+        $rootScope.username = "shahar";
         $rootScope.isLogin = false;
 
 

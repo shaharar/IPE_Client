@@ -1,8 +1,8 @@
 angular.module("parisApp")
 .controller("welcomeController", ['$rootScope', '$http', function ($rootScope, $http) {
     var self = this;
-    $rootScope.username = "Guest";
-    $rootScope.isLogin = false;
+    // $rootScope.username = "Guest";
+    // $rootScope.isLogin = false;
 
     self.start=function(){
         console.log("Start")

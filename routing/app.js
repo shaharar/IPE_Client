@@ -11,6 +11,11 @@ app.config(function($routeProvider)  {
             templateUrl: 'Modules/Welcome/welcome.html',
             controller : 'welcomeController as welcmCtrl'
         })
+        // Login
+        .when('/login', {
+            templateUrl: 'Modules/Login/login.html',
+            controller : 'loginController as logCtrl'
+        })
         // About
         .when('/about', {
             templateUrl: 'Modules/About/about.html',

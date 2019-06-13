@@ -4,14 +4,14 @@
         <title>Paris App</title>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
-    <body ng-controller="indexController">
+    <body ng-controller="indexController as idxCtrl">
         <nav>
             <li><a>Hello {{$root.username}} </a></li>
-            <li><a href="#/">Home</a></li>
-            <li><a href="#/Pois">POIs</a></li>
-            <li><a href="#/about">About</a></li>
-            <li><a ng-if="!$root.isLogin" href="#/Login">Login</a></li>
-            <li><a ng-if="$root.isLogin" ng-click="indexController.logout()" href="#/">Logout</a></li>
+            <li><a href="#!/">Home</a></li>
+            <li><a href="#!/poi">POIs</a></li>
+            <li><a href="#!/about">About</a></li>
+            <li><a ng-if="!$root.isLogin" href="#!/login">Login</a></li>
+            <li><a ng-if="$root.isLogin" ng-click="idxCtrl.logout()" href="#/">Logout</a></li>
         </nav>
 
     <div  ng-view></div>
