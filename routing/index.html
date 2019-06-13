@@ -6,7 +6,7 @@
     </head>
     <body ng-controller="indexController as idxCtrl">
         <nav>
-            <li><a>Hello {{$root.username}} </a></li>
+            <li><a style="color: black">Hello {{$root.username}} </a></li>
             <li><a href="#!/">Home</a></li>
             <li><a href="#!/poi">POIs</a></li>
             <li><a href="#!/about">About</a></li>
@@ -31,6 +31,10 @@
         <script src="Modules/POI/poiController.js"></script>
         <script src="Modules/Register/registerController.js"></script>
         <script src="Modules/Welcome/welcomeController.js"></script>
+
+        <script src="httpReqService.js"></script>
+        <script src="userAuthServices.js"></script>
+        <script src="sessionStorageService.js"></script>
 
     </body>
 </html>

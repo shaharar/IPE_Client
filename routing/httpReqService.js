@@ -3,16 +3,10 @@ angular.module("parisApp")
 
     var localhost = "http://localhost:3000/";
     this.get = function(path) {
-        $http.get(localhost + path).then(
-            function success(response){
-                return response;
-            }
-            , function error(response){
-                return "fail";
-            })
+        return $http.get(localhost + path)
     }
 
-    this.post = function(path) {
-        $http.post(localhost + path)
+    this.post = function(path, data) {
+        return $http.post(localhost + path, data)
     }
 })

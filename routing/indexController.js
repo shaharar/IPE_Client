@@ -3,14 +3,12 @@ angular.module("parisApp")
     console.log("enter index controller")
     self = this;
     $rootScope.username = "Guest";
-    $rootScope.isLogin = true;
+    $rootScope.isLogin = false;
 
     self.logout=function(){
         console.log("enter logout")
         $rootScope.username = "shahar";
         $rootScope.isLogin = false;
-
-
     }
     
     // var xml = new XMLHttpRequest();

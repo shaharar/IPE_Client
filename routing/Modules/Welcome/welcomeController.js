@@ -1,34 +1,29 @@
 angular.module("parisApp")
-.controller("welcomeController", ['$rootScope', '$http', function ($rootScope, $http) {
+.controller("welcomeController", ['httpRequests','authentication', function (httpRequests,authentication) {
     var self = this;
     // $rootScope.username = "Guest";
     // $rootScope.isLogin = false;
 
     self.start=function(){
         console.log("Start")
-      //  authentication.tokenValidation();
+        authentication.tokenValidation();
     }
 
     self.get3RandomPois=function(){
-        console.log("enter")
-        $http.get("http://localhost:3000/POIs/get3RandomPOIs").then(
-            function success(response){
-                console.log(response);
-                self.randPOIs = response;
-            }
-            , function error(response){
-                console.log("fail")
-                self.randPOIs = response;
-            })
-
-        // self.randPOIs = httpRequests.get("POIs/get3RandomPOIs");
-        // if (randPOIs != ("fail")){
-        //     console.log(randPOIs);
-        // }
+        httpRequests.get("POIs/get3RandomPOIs")
+        .then (function (response){
+            self.randPOIs = response.data;
+            console.log(self.randPOIs[0].Picture)
+        });
     }
 
     self.getPoiInfo=function(poiID){
-        console.log("getPoiInfo");
+        httpRequests.get("POIs/getPOIByID/"+poiID)
+        .then (function (response){
+            self.poiRes = response.data;
+            console.log(self.poiRes.Name)
+        });
+        //  TODO-----------move to POI page-------------------------------------
     }
 
     self.register=function(){
