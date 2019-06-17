@@ -18,15 +18,31 @@ angular.module("parisApp")
     }
 
     self.getPoiInfo=function(poiID){
-        httpRequests.get("POIs/getPOIByID/"+poiID)
-        .then (function (response){
-            self.poiRes = response.data;
-            console.log(self.poiRes.Name)
-        });
+        // httpRequests.get("POIs/getPOIByID/"+poiID)
+        // .then (function (response){
+        //     self.poiRes = response.data;
+        //     console.log(self.poiRes.Name)
+        // });
         //  TODO-----------move to POI page-------------------------------------
     }
 
+   
+
+    self.getRegUserPois = function(){
+        httpRequests.get("POIs/private/get2POIsByCategories")
+        .then(function(response){
+            self.poisByCat = response.data;
+        })
+
+        // TODO-------------------handle favorites order----------------------------
+        httpRequests.get("POIs/private/getFavoritesPOIsOfUser/" + poiNum)
+        .then(function(response){
+
+        })
+    }
+
+    // TODO--------------------move to Register page-----------------------------
     self.register=function(){
-        console.log("register");
+
     }
 }]);

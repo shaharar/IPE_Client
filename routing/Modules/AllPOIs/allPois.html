@@ -1,0 +1,10 @@
+<div ng-init = "allPoisCtrl.start()">
+    <div ng-init = "allPoisCtrl.getAllPOIs()">
+            <div class="row">
+                <div class="column" ng-repeat="poi in allPoisCtrl.allPoiRes">
+                    <img ng-src="{{poi.Picture}}" style="width:100%" ng-click="allPoisCtrl.getPoiInfo(poi.ID)">
+                    <center><h2>{{poi.Name}}</h2></center>
+                </div>
+            </div>
+    </div>
+</div>

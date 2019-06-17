@@ -16,13 +16,28 @@ app.config(function($routeProvider)  {
             templateUrl: 'Modules/Login/login.html',
             controller : 'loginController as logCtrl'
         })
+        // Register
+        .when('/register', {
+        templateUrl: 'Modules/Register/register.html',
+        controller : 'registerController as regCtrl'
+        })
         // About
         .when('/about', {
             templateUrl: 'Modules/About/about.html',
             controller : 'aboutController as abtCtrl'
         })
-        // POI
+        // ALL POIs
         .when('/poi', {
+            templateUrl: 'Modules/AllPois/allPois.html',
+            controller : 'allPoisController as allPoisCtrl'
+        })
+        // POI INFO
+        .when('/poi/id/:id?', {
+            templateUrl: 'Modules/POI/poi.html',
+            controller : 'poiController as poiCtrl'
+        })
+        // POI INFO
+        .when('/poi/name/:name?', {
             templateUrl: 'Modules/POI/poi.html',
             controller : 'poiController as poiCtrl'
         })
