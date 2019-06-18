@@ -26,7 +26,7 @@ angular.module("parisApp")
    
 
     self.getRegUserPois = function(){
-        httpRequests.get2POIsByCategories()
+        httpRequests.get("POIs/private/get2POIsByCategories")
         .then(function(response){
             self.poisByCat = response.data;
         }, function(response){

@@ -10,7 +10,7 @@ angular.module("parisApp")
 
     self.login=function(){
         console.log("entered login")
-        httpRequests.postLogin(self.currUser) 
+        httpRequests.post("Users/login",self.currUser) 
         .then (function (response){
             if (response.data.message == "one or more fields required" || response.data.message == "invalid login attempt"){
                 alert("The system could not log you in. Please make sure that you have filled all the required fields. If so, please make sure that you have filled in correct account details")

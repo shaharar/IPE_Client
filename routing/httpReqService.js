@@ -15,27 +15,27 @@ angular.module("parisApp")
             {
                 method:'GET',
                 url:localhost + path,
-                // headers:{
-                //     'x-auth-token': $window.sessionStorage.getItem("userToken")
-                // }
+                headers:{
+                    'x-auth-token': $window.sessionStorage.getItem("userToken")
+                }
             }
         )
     }
 
-    this.get2POIsByCategories = function() {
-        console.log(JSON.stringify($window.sessionStorage))
-        var req = {
-            method:'GET',
-            url: "http://localhost:3000/POIs/private/get2POIsByCategories",
-            headers: {
-                'x-auth-token': $window.sessionStorage.getItem("userToken")
-            }
-        };
-        console.log("\n" + JSON.stringify(req))
-        return $http(
-           req 
-        )
-    }
+    // this.get2POIsByCategories = function() {
+    //     console.log(JSON.stringify($window.sessionStorage))
+    //     var req = {
+    //         method:'GET',
+    //         url: "http://localhost:3000/POIs/private/get2POIsByCategories",
+    //         headers: {
+    //             'x-auth-token': $window.sessionStorage.getItem("userToken")
+    //         }
+    //     };
+    //     console.log("\n" + JSON.stringify(req))
+    //     return $http(
+    //        req 
+    //     )
+    // }
 
     this.post = function(path, data) {
         // if (!path.startsWith("POIs/private")){
@@ -49,24 +49,24 @@ angular.module("parisApp")
             {
                 method:'POST',
                 url:localhost + path,
-                // headers: {
-                //     'x-auth-token': $window.sessionStorage.getItem("userToken")
-                // },
-                data:{data}
+                headers: {
+                    'x-auth-token': $window.sessionStorage.getItem("userToken")
+                },
+                data:data
             }
         )
     }
 
-    this.postLogin = function(data) {
-        return $http(
-            {
-                method:'POST',
-                url:"http://localhost:3000/Users/login",
-                data:{
-                    Username: data.Username,
-                    Password: data.Password
-                }
-            }
-        )
-    }
+    // this.postLogin = function(data) {
+    //     return $http(
+    //         {
+    //             method:'POST',
+    //             url:"http://localhost:3000/Users/login",
+    //             data:{
+    //                 Username: data.Username,
+    //                 Password: data.Password
+    //             }
+    //         }
+    //     )
+    // }
 }])
