@@ -1,5 +1,5 @@
 angular.module("parisApp")
-.controller("registerController", ['httpRequests', function (httpRequests) {
+.controller("registerController", ['httpRequests', '$window', function (httpRequests, $window) {
     var self = this;
 
     self.start=function(){
@@ -13,6 +13,9 @@ angular.module("parisApp")
         httpRequests.get("Users/getQuestions")
         .then (function (response){
             self.questions = response.data;
+        }, function(response){
+             //------------TODO OPTIONAL handle error------------------------
+
         });
     }
 
@@ -20,6 +23,9 @@ angular.module("parisApp")
         httpRequests.get("POIs/getPOIsCategories")
         .then (function (response){
             self.categories = response.data;
+        }, function(response){
+             //------------TODO OPTIONAL handle error------------------------
+
         });
     }
 
@@ -50,8 +56,13 @@ angular.module("parisApp")
            }
            else if (response.data.message == "Registration succeeded"){
                alert("User was added successfully");
-               // -------------------TODO redirect login page---------------------------
+               // -------------------redirect to login page---------------------------
+               $window.location.href = "#!/login";
            }
+       },
+       function(response){
+             //------------TODO OPTIONAL handle error------------------------
+
        }) 
     }
 
