@@ -1,12 +1,9 @@
 angular.module("parisApp")
-.controller("welcomeController", ['httpRequests','authentication', function (httpRequests,authentication) {
+.controller("welcomeController", ['httpRequests','authentication','$rootScope', function (httpRequests,authentication,$rootScope) {
     var self = this;
-    // $rootScope.username = "Guest";
-    // $rootScope.isLogin = false;
 
     self.start=function(){
         console.log("Start")
-        authentication.tokenValidation();
     }
 
     self.get3RandomPois=function(){
@@ -29,16 +26,20 @@ angular.module("parisApp")
    
 
     self.getRegUserPois = function(){
-        httpRequests.get("POIs/private/get2POIsByCategories")
+        httpRequests.get2POIsByCategories()
         .then(function(response){
             self.poisByCat = response.data;
+        }, function(response){
+
         })
 
         // TODO-------------------handle favorites order----------------------------
-        httpRequests.get("POIs/private/getFavoritesPOIsOfUser/" + poiNum)
-        .then(function(response){
+        // httpRequests.get("POIs/private/getFavoritesPOIsOfUser/2")
+        // .then(function(response){
 
-        })
+        // }, function(response){
+            
+        // })
     }
 
     // TODO--------------------move to Register page-----------------------------

@@ -37,3 +37,61 @@ a:hover{
   flex: 33.3%;
   padding: 5px;
 }
+
+  /* --------------------------Login-------------------------- */
+form#loginForm{
+	height: 100%;
+}
+.logContainer {
+/* position: relative; */
+width: 100%;
+height: 100%;
+padding-left: 42%;
+}
+.logContainer label {
+font-size: 140%;
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+display: block;
+}
+.logContainer input[type='text'], input[type='password'] {
+	font-size: 16px;
+}
+
+.logContainer input#loginUsername {
+text-align: left;
+width: 15%;
+padding: 12px 20px;
+border: black solid 1px;
+}
+.logContainer input#loginPsw {
+text-align: left;
+width: 15%;
+padding: 12px 20px;
+border: black solid 1px;
+}
+#login.h2{
+	margin-top: 30%;
+	color: #444444;
+	text-align: center;
+	font-size: 230%;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+/* image in Login window */
+.imgContainer {
+text-align: center;
+margin: 24px 0 12px 0;
+}  
+img.loginImg {
+width: 7%;
+border-radius: 10%;
+}
+.submitLogBtn {
+border: none;
+cursor: pointer;
+width: 10%;
+left: 45%;
+top: 80%;
+}
+.submitLogBtn:hover {
+	transform: scale(1.05);
+}

@@ -2,6 +2,7 @@ angular.module("parisApp")
 .service('storageService', ['$window', function ($window) {
 
     this.getStorageRec = function(key) {
+        console.log("enter getStorageRec")
         return $window.sessionStorage.getItem(key);
     }
 
@@ -10,7 +11,7 @@ angular.module("parisApp")
     }
 
     this.setStorage = function(key, value) {
-        var recordValue = getStorageRec(key);
+        var recordValue = this.getStorageRec(key);
         if (!recordValue) {
             return $window.sessionStorage.setItem(key,value);
         }

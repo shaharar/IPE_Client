@@ -7,7 +7,7 @@ angular.module("parisApp")
 
     self.logout=function(){
         console.log("enter logout")
-        $rootScope.username = "shahar";
+        $rootScope.username = "Guest";
         $rootScope.isLogin = false;
     }
     

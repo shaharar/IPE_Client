@@ -1,0 +1,22 @@
+<link rel="stylesheet" type="text/css" href="/routing/style.css">
+<div id="login">
+    <center><h2>Login</h2></center>
+        <form id=loginForm>                    
+            <div class="imgContainer">
+                <img ng-src="/images/login3.png" alt="Login" class="loginImg">
+            </div>
+            <br>
+            <div class="logContainer">
+                <left>
+                    <label for="username"><b>Username: </b></label>
+                    <input type="text" id="loginUsername" ng-model="logCtrl.currUser.Username" placeholder="Enter Username" name="username" > 
+                    <br>
+                    <br>
+                    <label for="psw"><b>Password: </b></label>
+                    <input type="password" id="loginPsw" ng-model="logCtrl.currUser.Password" placeholder="Enter Password" name="psw" >
+                    <br>
+                    <button type="submit" class="submitLogBtn" ng-click="logCtrl.loginValidation()">Login</button>
+                </left>
+            </div>
+        </form>
+</div>

@@ -4,7 +4,6 @@ angular.module("parisApp")
 
     self.start=function(){
         console.log("Start")
-        authentication.tokenValidation();
     }
 
     self.getPoiInfo=function(){
