@@ -8,7 +8,7 @@ angular.module("parisApp")
     }
 
     self.getPoiInfo=function(){
-                 //  TODO-----------move to POI page-------------------------------------
+     //  TODO-----------move to POI page-------------------------------------
     }
 
     self.getPOIByID=function(poiId){
@@ -25,3 +25,8 @@ angular.module("parisApp")
         });
     }
 }]);
+
+    //  TODO-----------add rank-------------------------------------
+
+
+    //  TODO-----------add to favorites ???-------------------------------------

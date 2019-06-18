@@ -50,7 +50,7 @@ angular.module("parisApp")
            }
            else if (response.data.message == "Registration succeeded"){
                alert("User was added successfully");
-               // -------------------TODO redirect login page
+               // -------------------TODO redirect login page---------------------------
            }
        }) 
     }
