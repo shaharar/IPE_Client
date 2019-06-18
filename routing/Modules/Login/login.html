@@ -18,5 +18,29 @@
                     <button type="submit" class="submitLogBtn" ng-click="logCtrl.loginValidation()">Login</button>
                 </left>
             </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div id="restorePsw">
+                <center>
+                        <button type="submit" class="restorePswBtn" ng-click="logCtrl.restorePassword()">Restore Password</button>
+                        <br>
+                        <br>
+                        <label for="Question"><b>Security Question: </b></label>
+                        <!-- <label ng-model="logCtrl.getUserQuestion()"><b>{{user.SecurityQ}}</b></label> -->
+                        <br>
+                        <label for="Answer"><b>Answer: </b></label>
+                    <input type="text" id="securityA" ng-model="logCtrl.user.SecurityA" placeholder="Enter Username" name="username" > 
+                    <br>
+                </center>
+            </div>
+            <div id="register">
+                <center>
+                    <br>
+                        <button type="submit" class="registerLoginBtn" ng-click="logCtrl.register()">Register</button>    
+                </center>
+            </div>
         </form>
 </div>

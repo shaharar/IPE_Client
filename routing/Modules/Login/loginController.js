@@ -4,12 +4,10 @@ angular.module("parisApp")
 
     self.loginValidation=function(){
         console.log("enter login validation")
-
         self.login();
     }
 
     self.login=function(){
-        console.log("entered login")
         httpRequests.post("Users/login",self.currUser) 
         .then (function (response){
             if (response.data.message == "one or more fields required" || response.data.message == "invalid login attempt"){
@@ -17,12 +15,9 @@ angular.module("parisApp")
             }
             else{
                 self.token=response.data.userToken;
-                console.log(self.token);
-               authentication.setCurrUser(self.currUser);
-                console.log($rootScope.username);
+                authentication.setCurrUser(self.currUser);
                 //-----------store user's token in session storage------------------
-              $window.sessionStorage.setItem("userToken",self.token);
-              console.log("header- " + $window.sessionStorage.getItem("userToken"))
+                $window.sessionStorage.setItem("userToken",self.token);
                 //-----------initialize user's favorites cache---------------------
                 // favoritesCache.resetCache();
                 //-----------redirect to home page---------------------
@@ -39,13 +34,16 @@ angular.module("parisApp")
     }
 
     self.register=function(){
-        $location.path('/register')
+        // $location.path('/register')
+        $window.location.href = "#!/register";
     }
 
-    self.getUserQuestions=function(){
-        httpRequests.get("Users/getUserQuestions")
+    self.getUserQuestion=function(){
+        httpRequests.get("Users/getUserQuestions","")
         .then (function (response){
             self.user.SecurityQ = response.data[0];
+        },function(response){
+
         });
     }
 
@@ -53,11 +51,10 @@ angular.module("parisApp")
         //-------------user is a json of:'{ "Username":, "SecurityQ":, "SecurityA":}'-----------
         httpRequests.post("Users/retrievePassword", self.user) 
         .then (function (response){
+                alert("Password:" + response.data);
+        },function(response){
             if(response.data.message =="invalid attemp to retrieve password"){
                 alert("The system could not retrieve your password. Please make sure that you have submitted correct restore details");
-            }
-            else{
-                alert("Password:" + response.data);
             }
         });
     }
