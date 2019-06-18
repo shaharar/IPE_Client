@@ -1,16 +1,16 @@
 angular.module("parisApp")
-.controller("welcomeController", ['httpRequests','authentication','$rootScope', function (httpRequests,authentication,$rootScope) {
+.controller("welcomeController", ['httpRequests','authentication','$rootScope', '$window', function (httpRequests,authentication,$rootScope,$window) {
     var self = this;
 
     self.start=function(){
-        console.log("Start")
     }
 
     self.get3RandomPois=function(){
         httpRequests.get("POIs/get3RandomPOIs")
         .then (function (response){
             self.randPOIs = response.data;
-            console.log(self.randPOIs[0].Picture)
+        }, function(response){
+             //------------TODO OPTIONAL handle error------------------------
         });
     }
 
@@ -30,20 +30,20 @@ angular.module("parisApp")
         .then(function(response){
             self.poisByCat = response.data;
         }, function(response){
-
+                         //------------TODO OPTIONAL handle error------------------------
         })
 
         // TODO-------------------handle favorites order----------------------------
-        // httpRequests.get("POIs/private/getFavoritesPOIsOfUser/2")
-        // .then(function(response){
+        httpRequests.get("POIs/private/getFavoritesPOIsOfUser/2")
+        .then(function(response){
 
-        // }, function(response){
-            
-        // })
+        }, function(response){
+            //------------TODO OPTIONAL handle error------------------------
+        })
     }
 
-    // TODO--------------------move to Register page-----------------------------
     self.register=function(){
-
+    // --------------------redirect to Register page-----------------------------
+        $window.location.href = "#!/register";
     }
 }]);

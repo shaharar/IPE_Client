@@ -3,6 +3,5 @@ angular.module("parisApp")
     var self = this;
 
     self.init=function(){
-        console.log("enter init in about")
     }
 })
