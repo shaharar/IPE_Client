@@ -44,9 +44,9 @@ angular.module("parisApp")
                 favorites.push(response.data[i].ID);
             }
             $window.sessionStorage.setItem("favorites",favorites);
-            $rootScope.favoritesList =  $window.sessionStorage.getItem("favorites").split(',');
+            $rootScope.favoritesList =  $window.sessionStorage.getItem("favorites").split(',');    
         },function(response){
-    
+            $rootScope.favoritesList =  [];
         });
     }
 
