@@ -1,13 +1,29 @@
 angular.module("parisApp")
 .controller("indexController",['$rootScope','$window', function ($rootScope,$window) {
     self = this;
-    $rootScope.username = "Guest";
-    $rootScope.isLogin = false;
+   
+    self.start=function(){
+        if($window.sessionStorage.getItem("userToken") == null){
+            $rootScope.username = "Guest";
+            $rootScope.isLogin = false;
+            $rootScope.favoritesList = [];
+        }
+        else{
+            $rootScope.username = $window.sessionStorage.getItem("username");
+            $rootScope.isLogin = true;
+            $rootScope.favoritesList =  $window.sessionStorage.getItem("favorites").split(',');
+        }
+        console.log($rootScope.username);
+        console.log($rootScope.isLogin);
+        console.log($rootScope.favoritesList);
+    
+    }
 
     self.logout=function(){
         $rootScope.username = "Guest";
         $rootScope.isLogin = false;
         $window.sessionStorage.removeItem("userToken");
+        $window.sessionStorage.removeItem("username");
     }
     
     // var xml = new XMLHttpRequest();

@@ -4,7 +4,7 @@
         <title>Paris App</title>
         <link rel="stylesheet" type="text/css" href="/routing/style.css">
     </head>
-    <body ng-controller="indexController as idxCtrl">
+    <body ng-controller="indexController as idxCtrl" ng-init="idxCtrl.start()">
         <nav>
             <li><a style="color: black">Hello {{$root.username}} </a></li>
             <li><a href="#!/">Home</a></li>
@@ -34,9 +34,7 @@
         <script src="Modules/Welcome/welcomeController.js"></script>
 
         <script src="httpReqService.js"></script>
-        <script src="userAuthServices.js"></script>
-
-        <!-- <script src="sessionStorageService.js"></script> -->
+     
 
     </body>
 </html>

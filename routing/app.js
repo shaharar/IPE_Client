@@ -26,6 +26,11 @@ app.config(function($routeProvider)  {
             templateUrl: 'Modules/About/about.html',
             controller : 'aboutController as abtCtrl'
         })
+        // Favorites
+        .when('/favorites', {
+            templateUrl: 'Modules/Favorites/favorites.html',
+            controller : 'favoritesController as favCtrl'
+        })
         // ALL POIs
         .when('/poi', {
             templateUrl: 'Modules/AllPois/allPois.html',

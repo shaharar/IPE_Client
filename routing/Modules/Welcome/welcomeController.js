@@ -1,5 +1,5 @@
 angular.module("parisApp")
-.controller("welcomeController", ['httpRequests','authentication','$rootScope', '$window', function (httpRequests,authentication,$rootScope,$window) {
+.controller("welcomeController", ['httpRequests','$rootScope', '$window', function (httpRequests,$rootScope,$window) {
     var self = this;
 
     self.start=function(){

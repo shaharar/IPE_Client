@@ -1,0 +1,13 @@
+<div ng-init = "favCtrl.start()">
+        <div class="row">
+            <div class="column" ng-repeat="poi in favCtrl.POIsInfo">
+                <div>
+                        <img ng-src="{{poi.Picture}}" style="width:100%">
+                        <center><h2>{{poi.Name}}</h2></center>
+                        <button ng-click="favCtrl.removeFromFavorites(poi.ID)">Remove From Favorites</button>
+                </div>
+         
+            </div>
+        </div>
+</div>
+<button ng-click="favCtrl.saveFavoritePOIs()">Save Favorites</button>

@@ -1,5 +1,5 @@
 angular.module("parisApp")
-.controller("poiController", ['httpRequests', 'authentication', function (httpRequests, authentication) {
+.controller("poiController", ['httpRequests', function (httpRequests) {
     var self = this;
 
     self.start=function(){

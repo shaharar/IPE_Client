@@ -1,5 +1,5 @@
 angular.module("parisApp")
-.controller("loginController", ['httpRequests','authentication','$window','$rootScope', function (httpRequests,authentication,$window,$rootScope) {
+.controller("loginController", ['httpRequests','$window','$rootScope', function (httpRequests,$window,$rootScope) {
     var self = this;
 
     self.loginValidation=function(){
@@ -15,11 +15,16 @@ angular.module("parisApp")
             }
             else{
                 self.token=response.data.userToken;
-                authentication.setCurrUser(self.currUser);
+                // authentication.setCurrUser(self.currUser);
+                $rootScope.username = self.currUser.Username;
+                $rootScope.isLogin = true;
                 //-----------store user's token in session storage------------------
                 $window.sessionStorage.setItem("userToken",self.token);
+                $window.sessionStorage.setItem("username",self.currUser.Username);
                 //-----------initialize user's favorites cache---------------------
                 // favoritesCache.resetCache();
+                self.getFavoritesPOIsOfUser();
+                $rootScope.favoritesList =  $window.sessionStorage.getItem("favorites").split(',');
                 //-----------redirect to home page---------------------
                 $window.location.href = "#!/";
             } 
@@ -30,6 +35,19 @@ angular.module("parisApp")
             else{
                 alert("Oops..the system failed to log you in")
             }
+        });
+    }
+
+    self.getFavoritesPOIsOfUser=function(){
+        httpRequests.get("POIs/private/getFavoritesPOIsOfUser/0")
+        .then (function (response){
+            var favorites = [];
+            for (var i = 0; i < response.data.length; i++){
+                favorites.push(response.data[i].ID);
+            }
+            $window.sessionStorage.setItem("favorites",favorites);
+        },function(response){
+    
         });
     }
 

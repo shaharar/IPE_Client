@@ -1,5 +1,5 @@
 angular.module("parisApp")
-.controller("allPoisController", ['httpRequests', 'authentication', function (httpRequests, authentication) {
+.controller("allPoisController", ['httpRequests', '$window', function (httpRequests,$window) {
     var self = this;
 
     self.start=function(){
@@ -25,6 +25,10 @@ angular.module("parisApp")
         }, function(response){
              //------------TODO OPTIONAL handle error------------------------
         });
+    }
+
+    self.getFavoritePois=function(){
+        $window.location.href = "#!/favorites";
     }
 
 }]);
