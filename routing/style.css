@@ -30,12 +30,49 @@ a:hover{
 
   /* --------------------------images-------------------------- */
 .row {
-  display: flex;
+	display: flex;
 }
 
 .column {
   flex: 33.3%;
-  padding: 5px;
+	padding: 5px;
+}
+
+/* --------------------------Welcome-------------------------- */
+#welcome{
+	margin-top: 6%;
+}
+
+#welcome h1{
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	color: #972424;
+}
+
+#welcome p{
+	/* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+	font-size: 100%;
+}
+
+#randomPois{
+	margin-top: 10%;
+}
+
+/* Welcome Buttons */
+#welcomeBtn{
+/* position: absolute; */
+background-color: rgba(17, 17, 17, 0.952);
+color: white;
+text-align: center;
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+font-size: 18px;
+width: 7%;
+height: 5%;
+border-radius: 12px;
+cursor: pointer;
+/* left: 5%; */
+}
+#welcomeBtn:hover{
+	color:#d66565
 }
 
   /* --------------------------Login-------------------------- */
@@ -71,7 +108,7 @@ border: black solid 1px;
 }
 #login h2{
 	margin-top: 5%;
-	color: #41ad61;
+	color: #ac7777;
 	text-align: center;
 	font-size: 200%;
 	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -82,24 +119,33 @@ text-align: center;
 margin: 24px 0 12px 0;
 }  
 img.loginImg {
-width: 7%;
-border-radius: 10%;
+width: 6%;
+border-radius: 8%;
 }
 .submitLogBtn {
 position: absolute;
-background-color: rgba(111, 192, 111, 0.952);
+background-color: rgba(17, 17, 17, 0.952);
 color: white;
 text-align: center;
 font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 font-size: 18px;
 width: 10%;
-height: 7%;
+height: 5%;
 border-radius: 12px;
 cursor: pointer;
 left: 45%;
-top: 70%;
+/* top: 60%; */
 }
 .submitLogBtn:hover {
 	transform: scale(1.05);
 }
 
+/* --------------------------about-------------------------- */
+#about{
+	margin-top: 5%;
+}
+
+#about h1{
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	color: #972424;
+}

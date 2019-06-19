@@ -1,16 +1,23 @@
-<div ng-init="welcmCtrl.start()">
+<div id="welcome" ng-init="welcmCtrl.start()">
 
 <div ng-if="!$root.isLogin" ng-init="welcmCtrl.get3RandomPois()">
-    <h1> Welcome to Paris App </h1>
-    <p>You are currently not logged in. If you don't have an account please press the button below to register, otherwise login</p>
-    <button id="registerBtn" ng-click="welcmCtrl.register()" ></button>
+    <center>
+        <h1> Welcome to Paris App </h1>
+        <p><b>You are currently not logged in.
+            <br> If you don't have an account please press the button below to register, otherwise login</b></p>
+        <button id="welcomeBtn" ng-click="welcmCtrl.login()" >Login</button>
+        <button id="welcomeBtn" ng-click="welcmCtrl.register()" >Register</button>
+    </center>
 
-    <div class="row">
-        <div class="column" ng-repeat="rPOI in welcmCtrl.randPOIs">
-            <img ng-src="{{rPOI.Picture}}" style="width:100%" ng-click="welcmCtrl.getPoiInfo(rPOI.ID)">
-            <center><h2>{{rPOI.Name}}</h2></center>
+    <div id="randomPois">
+        <div class="row">
+            <div class="column" ng-repeat="rPOI in welcmCtrl.randPOIs">
+                <img ng-src="{{rPOI.Picture}}" style="width:100%" ng-click="welcmCtrl.getPoiInfo(rPOI.ID)">
+                <center><h2>{{rPOI.Name}}</h2></center>
+            </div>
         </div>
     </div>
+
 </div>
 
 <div ng-if="$root.isLogin" ng-init="welcmCtrl.getRegUserPois()">
@@ -22,5 +29,12 @@
             <center><h2>{{catPOI.Name}}</h2></center>
         </div>
     </div>
-
+<br>
+    <h1> Two of your favorite POIs: </h1>
+    <div class="row">
+        <div class="column" ng-repeat="favPOI in welcmCtrl.favoritePois">
+            <img ng-src="{{favPOI.Picture}}" style="width:100%" ng-click="welcmCtrl.getPoiInfo(favPOI.ID)">
+            <center><h2>{{favPOI.Name}}</h2></center>
+        </div>
+    </div>
 </div>

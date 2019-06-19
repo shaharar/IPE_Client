@@ -6,6 +6,24 @@ angular.module("parisApp")
         console.log("Start")
     }
 
+    self.getAllPOIs=function(){
+        httpRequests.get("POIs/getAllPOIs")
+        .then (function (response){
+            self.allPoiRes = response.data;
+        }, function(response){
+            //------------TODO OPTIONAL handle error------------------------
+        });
+    }
+
+    self.getPOIsCategories=function(){
+        httpRequests.get("POIs/getPOIsCategories")
+        .then (function (response){
+            self.categories = response.data;
+        }, function(response){
+             //------------TODO OPTIONAL handle error------------------------
+        });
+    }
+
     self.getPoiInfo=function(){
      //  TODO-----------move to POI page-------------------------------------
     }

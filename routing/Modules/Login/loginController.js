@@ -2,10 +2,11 @@ angular.module("parisApp")
 .controller("loginController", ['httpRequests','$window','$rootScope', function (httpRequests,$window,$rootScope) {
     var self = this;
 
-    self.loginValidation=function(){
-        console.log("enter login validation")
-        self.login();
-    }
+    // self.loginValidation=function(){
+
+    //     console.log("enter login validation")
+    //     self.login();
+    // }
 
     self.login=function(){
         httpRequests.post("Users/login",self.currUser) 
@@ -15,7 +16,6 @@ angular.module("parisApp")
             }
             else{
                 self.token=response.data.userToken;
-                // authentication.setCurrUser(self.currUser);
                 $rootScope.username = self.currUser.Username;
                 $rootScope.isLogin = true;
                 //-----------store user's token in session storage------------------
@@ -57,9 +57,13 @@ angular.module("parisApp")
     }
 
     self.getUserQuestion=function(){
-        httpRequests.get("Users/getUserQuestions","")
+        console.log("enter Q")
+        console.log(self.currUser.Username)
+        // self.user.Username = self.currUser.Username;
+        // console.log(self.user.Username)
+        httpRequests.post("Users/getUserQuestions",self.currUser)
         .then (function (response){
-            self.user.SecurityQ = response.data[0];
+            self.currUser.SecurityQ = response.data[0].Q1;
         },function(response){
 
         });
@@ -67,14 +71,22 @@ angular.module("parisApp")
 
     self.restorePassword=function(){
         //-------------user is a json of:'{ "Username":, "SecurityQ":, "SecurityA":}'-----------
-        httpRequests.post("Users/retrievePassword", self.user) 
+        httpRequests.post("Users/retrievePassword", self.currUser) 
         .then (function (response){
-                alert("Password:" + response.data);
+                alert("Your Password is: " + response.data.message);
         },function(response){
             if(response.data.message =="invalid attemp to retrieve password"){
                 alert("The system could not retrieve your password. Please make sure that you have submitted correct restore details");
             }
         });
     }
+
+    self.forgotPassword=function(){
+        console.log("HELLO")
+        self.user.Username = self.currUser.Username;
+        console.log(self.user.Username)
+        self.getUserQuestion();
+    }
+    
 
 }]);
