@@ -24,7 +24,6 @@ angular.module("parisApp")
                 //-----------initialize user's favorites cache---------------------
                 // favoritesCache.resetCache();
                 self.getFavoritesPOIsOfUser();
-                $rootScope.favoritesList =  $window.sessionStorage.getItem("favorites").split(',');
                 //-----------redirect to home page---------------------
                 $window.location.href = "#!/";
             } 
@@ -46,8 +45,10 @@ angular.module("parisApp")
                 favorites.push(response.data[i].ID);
             }
             $window.sessionStorage.setItem("favorites",favorites);
-        },function(response){
+            $rootScope.favoritesList =  $window.sessionStorage.getItem("favorites").split(',');
     
+        },function(response){
+            $rootScope.favoritesList =  [];
         });
     }
 
