@@ -28,8 +28,8 @@ app.config(function($routeProvider)  {
         })
         // ALL POIs
         .when('/poi', {
-            templateUrl: 'Modules/AllPois/allPois.html',
-            controller : 'allPoisController as allPoisCtrl'
+            templateUrl: 'Modules/POI/poi.html',
+            controller : 'poiController as poiCtrl'
         })
         // POI INFO
         .when('/poi/id/:id?', {

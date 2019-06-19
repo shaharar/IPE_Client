@@ -1,9 +1,14 @@
-<link rel="stylesheet" type="text/css" href="/routing/style.css">
 <div id="login">
-    <center><h2>Login</h2></center>
+    <center><h2>Sign In</h2></center>
         <form id=loginForm>                    
             <div class="imgContainer">
                 <img ng-src="/images/login3.png" alt="Login" class="loginImg">
+            </div>
+                        <div id="register">
+                <center>
+                    <br>
+                        <a href="#!/register" style="color:rgb(2, 24, 70); font-size: 16px">Does not have an acoount? sign up now!</a>
+                </center>
             </div>
             <br>
             <div class="logContainer">
@@ -15,31 +20,30 @@
                     <label for="psw"><b>Password: </b></label>
                     <input type="password" id="loginPsw" ng-model="logCtrl.currUser.Password" placeholder="Enter Password" name="psw" >
                     <br>
-                    <button type="submit" class="submitLogBtn" ng-click="logCtrl.loginValidation()">Login</button>
+                    <br>
+                    <button type="submit" class="submitLogBtn" ng-click="logCtrl.login()">Login</button>
                 </left>
             </div>
             <br>
             <br>
             <br>
             <br>
-            <br>
             <div id="restorePsw">
                 <center>
-                        <button type="submit" class="restorePswBtn" ng-click="logCtrl.restorePassword()">Restore Password</button>
+                    <!-- <a href="logCtrl.getUserQuestion()" style="color:black">Did you forget your password?</a> -->
+                    <button type="submit" class="resPswBtn" ng-click="logCtrl.getUserQuestion()" style="color:rgb(1, 36, 88)">Forgot your password?</button>
                         <br>
                         <br>
-                        <label for="Question"><b>Security Question: </b></label>
-                        <!-- <label ng-model="logCtrl.getUserQuestion()"><b>{{user.SecurityQ}}</b></label> -->
+                        <!-- <label for="username"><b>Username: </b></label>
+                        <input type="text" id="restoreUsername" ng-model="logCtrl.user.Username" placeholder="Enter Username" name="username" >  -->
+                        <label for="Question"><b>Security Question: {{logCtrl.currUser.SecurityQ}}</b></label>
                         <br>
                         <label for="Answer"><b>Answer: </b></label>
-                    <input type="text" id="securityA" ng-model="logCtrl.user.SecurityA" placeholder="Enter Username" name="username" > 
+                    <input type="text" id="securityA" ng-model="logCtrl.currUser.SecurityA" placeholder="Enter your answer" name="username" >
                     <br>
-                </center>
-            </div>
-            <div id="register">
-                <center>
+                    <br> 
+                    <button type="submit" class="restorePswBtn" ng-click="logCtrl.restorePassword()">Restore Password</button>
                     <br>
-                        <button type="submit" class="registerLoginBtn" ng-click="logCtrl.register()">Register</button>    
                 </center>
             </div>
         </form>

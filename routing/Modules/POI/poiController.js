@@ -1,9 +1,27 @@
 angular.module("parisApp")
-.controller("poiController", ['httpRequests', 'authentication', function (httpRequests, authentication) {
+.controller("poiController", ['httpRequests', function (httpRequests) {
     var self = this;
 
     self.start=function(){
         console.log("Start")
+    }
+
+    self.getAllPOIs=function(){
+        httpRequests.get("POIs/getAllPOIs")
+        .then (function (response){
+            self.allPoiRes = response.data;
+        }, function(response){
+            //------------TODO OPTIONAL handle error------------------------
+        });
+    }
+
+    self.getPOIsCategories=function(){
+        httpRequests.get("POIs/getPOIsCategories")
+        .then (function (response){
+            self.categories = response.data;
+        }, function(response){
+             //------------TODO OPTIONAL handle error------------------------
+        });
     }
 
     self.getPoiInfo=function(){
