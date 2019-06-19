@@ -3,14 +3,14 @@ angular.module("parisApp")
     var self = this;
 
     self.start=function(){
+        console.log("enter start")
         self.getQuestions();
         self.getCategories();
         self.getCountries();
-
     }
 
     self.getQuestions=function(){
-        httpRequests.get("Users/getQuestions")
+        httpRequests.get("Users/getSecurityQuestions")
         .then (function (response){
             self.questions = response.data;
         }, function(response){
@@ -33,20 +33,33 @@ angular.module("parisApp")
         //----------------TODO get countries from xml--------------
     }
 
+    self.regValidation=function(){
+        //----------------TODO validation--------------
+        console.log("enter regValidation")
+        self.register();
+    }
+    
     self.register=function(){
+        console.log("enter register")
         let userDetails = {
             Username : self.Username,
             Password : self.Password,
             FirstName : self.FirstName,
             LastName : self.LastName,
             City : self.City,
-            Country : self.Country,
+            // Country : self.Country,
+            Country : "Israel",
             Email : self.Email,
-            SecurityQ1 : self.SecurityQ1,
-            SecurityQ2 : self.SecurityQ2,
-            SecurityA1 : self.SecurityA1,
-            SecurityA2 : self.SecurityA2,
-            Categories : self.Categories
+            // SecurityQ1 : self.SecurityQ1,
+            // SecurityQ2 : self.SecurityQ2,
+            // SecurityA1 : self.SecurityA1,
+            // SecurityA2 : self.SecurityA2,
+            // Categories : self.Categories
+            SecurityQ1 : "{}",
+            SecurityQ2 : "{}",
+            SecurityA1 : "{}",
+            SecurityA2 : "{}",
+            Categories : "{}"
         };
         //-------------TODO registration details validation-----------------------
        httpRequests.post("Users/register",userDetails)

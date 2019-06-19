@@ -15,12 +15,17 @@ angular.module("parisApp")
     }
 
     self.getPoiInfo=function(poiID){
-        // httpRequests.get("POIs/getPOIByID/"+poiID)
-        // .then (function (response){
-        //     self.poiRes = response.data;
-        //     console.log(self.poiRes.Name)
-        // });
-        //  TODO-----------move to POI page-------------------------------------
+        httpRequests.get("POIs/getPOIByID/"+poiID)
+        .then (function (response){
+            console.log("hellooo")
+            self.name = response.data.Name;
+            self.description = response.data.Description;
+            self.usersWatching = response.data.UsersWatching;
+            self.rank = response.data.Rank;
+            self.review1 = response.data.Review1;
+            self.review2 = response.data.Review2;
+            self.picture = response.data.Picture;
+        });
     }
 
    

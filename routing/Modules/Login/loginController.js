@@ -22,9 +22,7 @@ angular.module("parisApp")
                 $window.sessionStorage.setItem("userToken",self.token);
                 $window.sessionStorage.setItem("username",self.currUser.Username);
                 //-----------initialize user's favorites cache---------------------
-                // favoritesCache.resetCache();
                 self.getFavoritesPOIsOfUser();
-                $rootScope.favoritesList =  $window.sessionStorage.getItem("favorites").split(',');
                 //-----------redirect to home page---------------------
                 $window.location.href = "#!/";
             } 
@@ -46,15 +44,16 @@ angular.module("parisApp")
                 favorites.push(response.data[i].ID);
             }
             $window.sessionStorage.setItem("favorites",favorites);
+            $rootScope.favoritesList =  $window.sessionStorage.getItem("favorites").split(',');
         },function(response){
     
         });
     }
 
-    self.register=function(){
-        // $location.path('/register')
-        $window.location.href = "#!/register";
-    }
+    // self.register=function(){
+    //     // $location.path('/register')
+    //     $window.location.href = "#!/register";
+    // }
 
     self.getUserQuestion=function(){
         console.log("enter Q")
@@ -79,14 +78,7 @@ angular.module("parisApp")
                 alert("The system could not retrieve your password. Please make sure that you have submitted correct restore details");
             }
         });
-    }
+    }  
 
-    self.forgotPassword=function(){
-        console.log("HELLO")
-        self.user.Username = self.currUser.Username;
-        console.log(self.user.Username)
-        self.getUserQuestion();
-    }
-    
 
 }]);

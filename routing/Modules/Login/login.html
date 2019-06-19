@@ -7,14 +7,14 @@
                         <div id="register">
                 <center>
                     <br>
-                        <a href="#!/register" style="color:rgb(2, 24, 70); font-size: 16px">Does not have an acoount? sign up now!</a>
+                        <a href="#!/register" style="color:rgb(2, 24, 70); font-size: 16px">Don't you have an acoount? <u>sign up now!</u></a>
                 </center>
             </div>
             <br>
             <div class="logContainer">
                 <left>
                     <label for="username"><b>Username: </b></label>
-                    <input type="text" id="loginUsername" ng-model="logCtrl.currUser.Username" placeholder="Enter Username" name="username" > 
+                    <input type="text" id="loginUsername" ng-model="logCtrl.currUser.Username" ng-model="logCtrl.user.Username" placeholder="Enter Username" name="username" required> 
                     <br>
                     <br>
                     <label for="psw"><b>Password: </b></label>
@@ -30,21 +30,39 @@
             <br>
             <div id="restorePsw">
                 <center>
-                    <!-- <a href="logCtrl.getUserQuestion()" style="color:black">Did you forget your password?</a> -->
-                    <button type="submit" class="resPswBtn" ng-click="logCtrl.getUserQuestion()" style="color:rgb(1, 36, 88)">Forgot your password?</button>
-                        <br>
-                        <br>
-                        <!-- <label for="username"><b>Username: </b></label>
-                        <input type="text" id="restoreUsername" ng-model="logCtrl.user.Username" placeholder="Enter Username" name="username" >  -->
-                        <label for="Question"><b>Security Question: {{logCtrl.currUser.SecurityQ}}</b></label>
-                        <br>
-                        <label for="Answer"><b>Answer: </b></label>
-                    <input type="text" id="securityA" ng-model="logCtrl.currUser.SecurityA" placeholder="Enter your answer" name="username" >
-                    <br>
-                    <br> 
-                    <button type="submit" class="restorePswBtn" ng-click="logCtrl.restorePassword()">Restore Password</button>
-                    <br>
+                    <a ng-click="logCtrl.getUserQuestion()" data-toggle="modal" data-target="#restoreModal" style="color:rgb(2, 24, 70); font-size: 14px"><u>Forgot your password?</u></a>
                 </center>
             </div>
         </form>
+
+        <div class="container">
+                <!-- Modal -->
+                <div class="modal fade" id="restoreModal" role="dialog">
+                  <div class="modal-dialog">
+                  
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <center><h4 class="modal-title">Restore your password</h4></center>
+                      </div>
+                      <div class="modal-body">
+                        <form name="restoreForm">
+                            <label for="Question"><b>Security Question:</b> {{logCtrl.currUser.SecurityQ}}</label>
+                            <br>
+                            <label for="Answer"><b>Answer:</b></label>
+                            <input name="answer" type="text" id="securityA" ng-model="logCtrl.currUser.SecurityA" placeholder="Enter your answer" required ng-minlength="1" >
+                            <br>
+                            <br>
+                            <center><button type="submit" class="restorePswBtn" ng-click="logCtrl.restorePassword()">Restore Password</button></center>
+                            <br>               
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                  </div>
+                </div>        
+        </div>
 </div>

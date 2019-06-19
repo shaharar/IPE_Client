@@ -2,6 +2,11 @@
 <html ng-app="parisApp">
     <head>
         <title>Paris App</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+        <!-- <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
         <link rel="stylesheet" type="text/css" href="/routing/style.css">
     </head>
     <body ng-controller="indexController as idxCtrl" ng-init="idxCtrl.start()">
@@ -13,12 +18,16 @@
             <li><a ng-if="!$root.isLogin" href="#!/login">Login</a></li>
             <li><a ng-if="$root.isLogin" ng-click="idxCtrl.logout()" href="#/">Logout</a></li>
         </nav>
-
+        
     <div  ng-view></div>
 
         <!--load angularjs-->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script> 
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+        
+                <!--JQuery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> 
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
 
         <!--load app-->
         <script src="app.js"></script>

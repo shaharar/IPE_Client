@@ -12,12 +12,11 @@
     <div id="randomPois">
         <div class="row">
             <div class="column" ng-repeat="rPOI in welcmCtrl.randPOIs">
-                <img ng-src="{{rPOI.Picture}}" style="width:100%" ng-click="welcmCtrl.getPoiInfo(rPOI.ID)">
+                <img ng-src="{{rPOI.Picture}}" style="width:100%" data-toggle="modal" data-target="#poiModal" ng-click="welcmCtrl.getPoiInfo(rPOI.ID)">
                 <center><h2>{{rPOI.Name}}</h2></center>
             </div>
         </div>
     </div>
-
 </div>
 
 <div ng-if="$root.isLogin" ng-init="welcmCtrl.getRegUserPois()">
@@ -25,16 +24,46 @@
     <h1> You may be interested in these POIs: </h1>
     <div class="row">
         <div class="column" ng-repeat="catPOI in welcmCtrl.poisByCat">
-            <img ng-src="{{catPOI.Picture}}" style="width:100%" ng-click="welcmCtrl.getPoiInfo(catPOI.ID)">
+            <img ng-src="{{catPOI.Picture}}" style="width:100%" data-toggle="modal" data-target="#poiModal" ng-click="welcmCtrl.getPoiInfo(catPOI.ID)">
             <center><h2>{{catPOI.Name}}</h2></center>
         </div>
     </div>
-<br>
+    <br>
     <h1> Two of your favorite POIs: </h1>
     <div class="row">
         <div class="column" ng-repeat="favPOI in welcmCtrl.favoritePois">
-            <img ng-src="{{favPOI.Picture}}" style="width:100%" ng-click="welcmCtrl.getPoiInfo(favPOI.ID)">
+            <img ng-src="{{favPOI.Picture}}" style="width:100%" data-toggle="modal" data-target="#poiModal" ng-click="welcmCtrl.getPoiInfo(favPOI.ID)">
             <center><h2>{{favPOI.Name}}</h2></center>
         </div>
     </div>
 </div>
+
+<div class="container">
+        <!-- Modal -->
+        <div class="modal fade" id="poiModal" role="dialog">
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <center><h4 class="modal-title">POI's Information</h4></center>
+              </div>
+              <div class="modal-body">
+                <p style="font-size:16px"><b>{{welcmCtrl.name}}</b></p>
+                <p> <img ng-src="{{welcmCtrl.picture}}" style="width:40%"> </p>
+                <p><b> Description: </b> {{welcmCtrl.description}} </p>
+                <p><b> Number of watchings: </b> {{welcmCtrl.usersWatching}} </p>
+                <p><b> Rank: </b> {{welcmCtrl.rank}}% </p>
+                <p><b> Review 1: </b> {{welcmCtrl.review1}} </p>
+                <p><b> Review 2: </b> {{welcmCtrl.review2}} </p>                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>        
+</div>
+
+
