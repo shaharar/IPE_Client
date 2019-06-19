@@ -1,5 +1,5 @@
 angular.module("parisApp")
-.controller("poiController", ['httpRequests', function (httpRequests) {
+.controller("poiController", ['httpRequests', '$window',function (httpRequests,$window) {
     var self = this;
 
     self.start=function(){
@@ -40,6 +40,10 @@ angular.module("parisApp")
         .then (function (response){
             self.poiRes = response.data;
         });
+    }
+
+    self.getFavoritePOIs=function(){
+        $window.location.href = "#!/favorites";
     }
 }]);
 
