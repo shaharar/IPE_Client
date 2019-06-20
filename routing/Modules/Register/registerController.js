@@ -61,12 +61,13 @@ angular.module("parisApp")
             City : self.City,
             Country : self.Country,
             Email : self.Email,
-            Categories : self.chosenCategories,
             SecurityQ1 : self.SecurityQ1,
             SecurityQ2 : self.SecurityQ2,
             SecurityA1 : self.SecurityA1,
-            SecurityA2 : self.SecurityA2
+            SecurityA2 : self.SecurityA2,
+            Categories : self.chosenCategories
         };
+        console.log(userDetails)
         //-------------TODO registration details validation-----------------------
        httpRequests.post("Users/register",userDetails)
        .then(function(response){

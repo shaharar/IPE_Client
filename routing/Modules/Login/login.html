@@ -4,21 +4,28 @@
             <div class="imgContainer">
                 <img ng-src="/images/login3.png" alt="Login" class="loginImg">
             </div>
-                        <div id="register">
+                        <div id="registerInLogin">
                 <center>
                     <br>
-                        <a href="#!/register" style="color:rgb(2, 24, 70); font-size: 16px">Don't you have an acoount? <u>sign up now!</u></a>
+                        <a href="#!/register" style="color:rgb(2, 24, 70); font-size: 16px">Not a member? <u>sign up now!</u></a>
                 </center>
             </div>
             <br>
             <div class="logContainer">
                 <left>
-                    <label for="username"><b>Username: </b></label>
-                    <input type="text" id="loginUsername" ng-model="logCtrl.currUser.Username" ng-model="logCtrl.user.Username" placeholder="Enter Username" name="username" required> 
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        <input type="text" id="loginUsername" class="form-control" ng-model="logCtrl.currUser.Username" ng-model="logCtrl.user.Username" placeholder="Enter Username" name="username" required> 
+                    </div>
+                    <!-- <input name="" class="form-control" placeholder="Full name" type="text"> -->
+                    <!-- <label for="username"><b>Username: </b></label> -->
                     <br>
-                    <br>
-                    <label for="psw"><b>Password: </b></label>
-                    <input type="password" id="loginPsw" ng-model="logCtrl.currUser.Password" placeholder="Enter Password" name="psw" >
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        <input type="password" class="form-control" id="loginPsw" ng-model="logCtrl.currUser.Password" placeholder="Enter Password" name="psw" >
+                    </div>
+                    <!-- <input class="form-control" placeholder="Create password" type="password"> -->
+                    <!-- <label for="psw"><b>Password: </b></label> -->
                     <br>
                     <br>
                     <button type="submit" class="submitLogBtn" ng-click="logCtrl.login()">Login</button>
