@@ -17,19 +17,82 @@
         </center>
         <br></br>
         <br></br>
-        <div ng-repeat="poi in favCtrl.filteredPOIs | orderBy: favCtrl.sortBy">
+        <div ng-if="favCtrl.sortBy == 'Rank'" ng-repeat="poi in favCtrl.filteredPOIs | orderBy: favCtrl.sortBy">
                 <div>
-                        <center><img ng-src="{{poi.Picture}}" style="width:50%"></center>
                         <center><h2>{{poi.Name}}</h2></center>
-                        <center><h2>{{poi.Rank}}</h2></center>
+                        <center><h2 ng-if="favCtrl.sortType == 'Rank'">{{poi.Rank}}%</h2></center>
+                        <center><img ng-src="{{poi.Picture}}" style="width:50%" data-toggle="modal" data-target="#poiModal" ng-click="favCtrl.getPoiInfo(poi.ID)"></center>  
+                        <!-- <center><span ng-if="favCtrl.chosenCategories.length == 4" ng-click="moveUp($index)" class="glyphicon glyphicon-arrow-up"></span></center>
+                        <center><span ng-if="favCtrl.chosenCategories.length == 4" ng-click="moveDown($index)" class="glyphicon glyphicon-arrow-down"></span></center> -->
                         <center><button ng-click="favCtrl.removeFromFavorites(poi.ID);">Remove From Favorites</button></center>
-                        <center><select >
+                        <br>
+                        <br>
+                        <!-- <center><select >
                             <option value="default">Select item's priority</option>
                             <option ng-repeat="priority in favCtrl.priorities" value="priority">{{priority}}</option>
-                          </select></center>
+                          </select></center> -->
+                          
                 </div>
          
+
             </div>
+
+
+            <div ng-if="favCtrl.sortBy == 'Default'" ng-repeat="poi in favCtrl.filteredPOIs">
+                    <div>
+                            <center><h2>{{poi.Name}}</h2></center>
+                            <center><h2 ng-if="favCtrl.sortType == 'Rank'">{{poi.Rank}}%</h2></center>
+                            <center><img ng-src="{{poi.Picture}}" style="width:50%" data-toggle="modal" data-target="#poiModal" ng-click="favCtrl.getPoiInfo(poi.ID)"></center>  
+                            <center><span ng-if="favCtrl.chosenCategories.length == 4" ng-click="moveUp($index)" class="glyphicon glyphicon-arrow-up"></span></center>
+                            <center><span ng-if="favCtrl.chosenCategories.length == 4" ng-click="moveDown($index)" class="glyphicon glyphicon-arrow-down"></span></center>
+                            <center><button ng-click="favCtrl.removeFromFavorites(poi.ID);">Remove From Favorites</button></center>
+                            <br>
+                            <br>
+                            <!-- <center><select >
+                                <option value="default">Select item's priority</option>
+                                <option ng-repeat="priority in favCtrl.priorities" value="priority">{{priority}}</option>
+                              </select></center> -->
+                              
+                    </div>
+             
+    
+                </div>
+
+            <center><button ng-if="favCtrl.chosenCategories.length == 4" ng-click="favCtrl.saveChanges()">Save Changes</button></center>
+
     </div>
+
+
+
 </div>
-<center><button ng-click="favCtrl.saveChanges()">Save Changes</button></center>
+
+
+
+
+<div class="container">
+        <!-- Modal -->
+        <div class="modal fade" id="poiModal" role="dialog">
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <center><h4 class="modal-title">POI's Information</h4></center>
+              </div>
+              <div class="modal-body">
+                <p style="font-size:16px"><b>{{favCtrl.name}}</b></p>
+                <p> <img ng-src="{{favCtrl.picture}}" style="width:40%"> </p>
+                <p><b> Description: </b> {{favCtrl.description}} </p>
+                <p><b> Number of watchings: </b> {{favCtrl.usersWatching}} </p>
+                <p><b> Rank: </b> {{favCtrl.rank}}% </p>
+                <p><b> Review 1: </b> {{favCtrl.review1}} </p>
+                <p><b> Review 2: </b> {{favCtrl.review2}} </p>                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>        
+</div>

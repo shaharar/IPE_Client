@@ -1,45 +1,74 @@
 angular.module("parisApp")
 .controller("favoritesController", ['httpRequests', '$rootScope', '$window', '$route', '$scope', function (httpRequests,$rootScope,$window,$route,$scope) {
     var self = this;
-    $scope.sortTypes = ['Rank', 'ID', 'Prefrences'];
+    $scope.sortTypes = ['Default','Rank'];
+    self.sortBy = 'Default';
 
 
 
     self.start=function(){
         self.getPoisInfo();
-        self.setPriorities();
+        // self.setPriorities();
         self.getCategories();
     }
 
     self.setSortType=function(){
         self.sortBy = self.sortType;
-        console.log(self.sortBy);
     }
 
     self.getPoisInfo=function(){
-        var favoritePOIsInfo = [];
         var favoritePOIsId = $rootScope.favoritesList;
+        self.POIsInfo = [];
+        self.filteredPOIs = [];
         if (favoritePOIsId[0] == ""){
             alert("You currently don't have saved favorites")
         }
         else{
             for (var i = 0; i < favoritePOIsId.length; i++){
-                console.log("POIs/getPOIByID/"+ favoritePOIsId[i]);
+
                 httpRequests.get("POIs/getPOIByID/"+ favoritePOIsId[i])
                 .then (function (response){
-                    favoritePOIsInfo.push(response.data);
+                    // favoritePOIsInfo.push(response.data);
+                    var index = favoritePOIsId.indexOf(response.data.ID);
+                    console.log(index);
+                    self.POIsInfo[index] = response.data;
+                    self.filteredPOIs[index] = response.data;
+                    
                 }, function(response){
                                  //------------TODO OPTIONAL handle error------------------------
         
                 });
             }
-            self.POIsInfo = favoritePOIsInfo;
-            self.filteredPOIs = [];
-          
         }
-     
-
     }
+
+    self.getPoiInfo=function(poiID){
+        httpRequests.get("POIs/getPOIByID/"+poiID)
+        .then (function (response){
+            console.log("hellooo")
+            self.name = response.data.Name;
+            self.description = response.data.Description;
+            self.usersWatching = response.data.UsersWatching;
+            self.rank = response.data.Rank;
+            self.review1 = response.data.Review1;
+            self.review2 = response.data.Review2;
+            self.picture = response.data.Picture;
+        });
+    }
+
+    var move = function (origin, destination) {
+        var temp = self.filteredPOIs[destination];
+        self.filteredPOIs[destination] = self.filteredPOIs[origin];
+        self.filteredPOIs[origin] = temp;
+    };
+
+    $scope.moveUp = function (index) {
+        move(index, index - 1);
+    };
+
+    $scope.moveDown = function (index) {
+        move(index, index + 1);
+    };
 
     self.getCategories=function(){  
         httpRequests.get("POIs/getPOIsCategories")
@@ -72,13 +101,13 @@ angular.module("parisApp")
     }
 
 
-    self.setPriorities=function(){
-        var priorities = [];
-        for (var i = 0; i < $rootScope.favoritesList.length;i++){
-            priorities.push(i + 1);
-        }
-        self.priorities = priorities;
-    }
+    // self.setPriorities=function(){
+    //     var priorities = [];
+    //     for (var i = 0; i < $rootScope.favoritesList.length;i++){
+    //         priorities.push(i + 1);
+    //     }
+    //     self.priorities = priorities;
+    // }
 
     self.removeFromFavorites=function(poiID){
         var currFavoritesList = $rootScope.favoritesList;
@@ -86,7 +115,6 @@ angular.module("parisApp")
         $window.sessionStorage.setItem("favorites",currFavoritesList);
         $rootScope.favoritesList =  $window.sessionStorage.getItem("favorites").split(',');
         $route.reload();
-        console.log($rootScope.favoritesList);
     }
 
     self.saveChanges=function(){
@@ -95,9 +123,14 @@ angular.module("parisApp")
 
     self.saveFavoritePOIs=function(){
         var favoritePOIsId = $rootScope.favoritesList;
+        var IDs = [];
         var favoritePOIsPriorities = [];
-        for(var i = 0; i < favoritePOIsId.length; i++){
-            favoritePOIsPriorities.push(i + 1);
+        for(var i = 0; i < self.filteredPOIs.length; i++){
+            IDs.push(self.filteredPOIs[i].ID);
+            // favoritePOIsPriorities.push(i + 1);
+        }
+        for(var i = 0; i < IDs.length; i++){
+            favoritePOIsPriorities.push(IDs.indexOf(favoritePOIsId[i]));
         }
         let favoritesDetails = {
             favorites : favoritePOIsId,
@@ -107,6 +140,13 @@ angular.module("parisApp")
         .then (function (response){
             if (response.data.message == "Favorites list was updated"){
                 alert("Changes were saved successfully");
+                var updatedFavoritesList = [];
+                for (var i = 0; i < self.filteredPOIs.length; i++){
+                    updatedFavoritesList.push(self.filteredPOIs[i].ID);
+                }
+                $rootScope.favoritesList = updatedFavoritesList;
+                $window.sessionStorage.removeItem("favorites");
+                $window.sessionStorage.setItem("favorites",$rootScope.favoritesList);
             }
         }, function(response){
                              //------------TODO OPTIONAL handle error------------------------
