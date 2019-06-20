@@ -1,9 +1,10 @@
 angular.module("parisApp")
-.controller("registerController", ['httpRequests', '$window', function (httpRequests, $window) {
+.controller("registerController", ['httpRequests', '$window','$rootScope', function (httpRequests, $window,$rootScope) {
     var self = this;
 
     self.start=function(){
         console.log("enter start")
+        self.chosenCategories = [];
         self.getQuestions();
         self.getCategories();
         self.getCountries();
@@ -12,7 +13,11 @@ angular.module("parisApp")
     self.getQuestions=function(){
         httpRequests.get("Users/getSecurityQuestions")
         .then (function (response){
-            self.questions = response.data;
+            var SecQuestions = [];
+            for (var i = 0; i < response.data.length; i++){
+                SecQuestions.push(response.data[i].Question);
+            }
+            self.questions = SecQuestions;
         }, function(response){
              //------------TODO OPTIONAL handle error------------------------
 
@@ -25,18 +30,29 @@ angular.module("parisApp")
             self.categories = response.data;
         }, function(response){
              //------------TODO OPTIONAL handle error------------------------
-
         });
     }
 
+    /*get countries from xml*/
     self.getCountries=function(){
-        //----------------TODO get countries from xml--------------
+        var i;
+        var xmlDoc = $rootScope.myXML.responseXML;
+        var allCountries = [];
+        var x = xmlDoc.getElementsByTagName("Country");
+        for (i = 0; i < x.length; i++) {
+            allCountries.push(x[i].getElementsByTagName("Name")[0].childNodes[0].nodeValue.toString());
+        }
+        self.countries = allCountries;
     }
 
-    self.regValidation=function(){
-        //----------------TODO validation--------------
-        console.log("enter regValidation")
-        self.register();
+    self.chooseCategories=function (category) {
+        var idx = self.chosenCategories.indexOf(category);
+        if (idx == -1) {
+            self.chosenCategories.push(category);
+        }
+        else {
+            self.chosenCategories.splice(idx, 1);
+        }
     }
     
     self.register=function(){
@@ -47,19 +63,13 @@ angular.module("parisApp")
             FirstName : self.FirstName,
             LastName : self.LastName,
             City : self.City,
-            // Country : self.Country,
-            Country : "Israel",
+            Country : self.Country,
             Email : self.Email,
-            // SecurityQ1 : self.SecurityQ1,
-            // SecurityQ2 : self.SecurityQ2,
-            // SecurityA1 : self.SecurityA1,
-            // SecurityA2 : self.SecurityA2,
-            // Categories : self.Categories
-            SecurityQ1 : "{}",
-            SecurityQ2 : "{}",
-            SecurityA1 : "{}",
-            SecurityA2 : "{}",
-            Categories : "{}"
+            Categories : self.chosenCategories,
+            SecurityQ1 : self.SecurityQ1,
+            SecurityQ2 : self.SecurityQ2,
+            SecurityA1 : self.SecurityA1,
+            SecurityA2 : self.SecurityA2
         };
         //-------------TODO registration details validation-----------------------
        httpRequests.post("Users/register",userDetails)
@@ -69,15 +79,11 @@ angular.module("parisApp")
            }
            else if (response.data.message == "Registration succeeded"){
                alert("User was added successfully");
-               // -------------------redirect to login page---------------------------
                $window.location.href = "#!/login";
            }
        },
        function(response){
-             //------------TODO OPTIONAL handle error------------------------
-
+            alert("Something went wrong..");
        }) 
     }
-
-
 }]);
