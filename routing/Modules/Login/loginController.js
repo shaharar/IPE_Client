@@ -22,6 +22,7 @@ angular.module("parisApp")
                 $window.sessionStorage.setItem("userToken",self.token);
                 $window.sessionStorage.setItem("username",self.currUser.Username);
                 //-----------initialize user's favorites cache---------------------
+                self.getPrioritiesOfPOIs();
                 self.getFavoritesPOIsOfUser();
                 //-----------redirect to home page---------------------
                 $window.location.href = "#!/";
@@ -36,15 +37,31 @@ angular.module("parisApp")
         });
     }
 
+    self.getPrioritiesOfPOIs=function(){
+        httpRequests.get("POIs/private/getFavoritesPriorities")
+        .then (function (response){
+            var priorities = [];
+            for (var i = 0; i < response.data.length; i++){
+                priorities.push(response.data[i]);
+            }
+            self.favoritesPriorities = priorities;
+            console.log(self.favoritesPriorities);
+        },function(response){
+
+        });
+    }
+
     self.getFavoritesPOIsOfUser=function(){
         httpRequests.get("POIs/private/getFavoritesPOIsOfUser/0")
         .then (function (response){
             var favorites = [];
             for (var i = 0; i < response.data.length; i++){
-                favorites.push(response.data[i].ID);
+                var index = self.favoritesPriorities[i].Priority;
+                favorites[index] = response.data[i].ID;
             }
             $window.sessionStorage.setItem("favorites",favorites);
-            $rootScope.favoritesList =  $window.sessionStorage.getItem("favorites").split(',');    
+            $rootScope.favoritesList =  $window.sessionStorage.getItem("favorites").split(',');
+            console.log( $rootScope.favoritesList);  
         },function(response){
             $rootScope.favoritesList =  [];
         });
