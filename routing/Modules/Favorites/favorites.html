@@ -5,9 +5,19 @@
         <br></br>
         <br></br>
         <br></br>
-        <select ng-model="favCtrl.sortType" ng-options="item for item in sortTypes" ng-change="favCtrl.setSortType()">
-            </select>
-            <div ng-repeat="poi in favCtrl.POIsInfo | orderBy: favCtrl.sortBy">
+        <center>
+            <b>Sort By:</b>
+            <select ng-model="favCtrl.sortType" ng-options="item for item in sortTypes" ng-change="favCtrl.setSortType()"></select>
+            <br>
+            <br>
+            <b>Filter By:</b>
+            <label ng-repeat="cat in favCtrl.categories">
+                <input type="checkbox" ng-click="favCtrl.chooseCategories(cat.ID,$event)" ng-checked="favCtrl.categories.indexOf(cat.ID)"> {{cat.Name}}
+            </label>
+        </center>
+        <br></br>
+        <br></br>
+        <div ng-repeat="poi in favCtrl.filteredPOIs | orderBy: favCtrl.sortBy">
                 <div>
                         <center><img ng-src="{{poi.Picture}}" style="width:50%"></center>
                         <center><h2>{{poi.Name}}</h2></center>

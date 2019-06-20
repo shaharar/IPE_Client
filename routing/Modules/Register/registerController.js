@@ -13,7 +13,11 @@ angular.module("parisApp")
     self.getQuestions=function(){
         httpRequests.get("Users/getSecurityQuestions")
         .then (function (response){
-            self.questions = response.data;
+            var SecQuestions = [];
+            for (var i = 0; i < response.data.length; i++){
+                SecQuestions.push(response.data[i].Question);
+            }
+            self.questions = SecQuestions;
         }, function(response){
              //------------TODO OPTIONAL handle error------------------------
 
@@ -41,7 +45,7 @@ angular.module("parisApp")
         self.countries = allCountries;
     }
 
-    this.chooseCategories=function (category) {
+    self.chooseCategories=function (category) {
         var idx = self.chosenCategories.indexOf(category);
         if (idx == -1) {
             self.chosenCategories.push(category);

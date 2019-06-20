@@ -8,6 +8,7 @@ angular.module("parisApp")
     self.start=function(){
         self.getPoisInfo();
         self.setPriorities();
+        self.getCategories();
     }
 
     self.setSortType=function(){
@@ -33,10 +34,43 @@ angular.module("parisApp")
                 });
             }
             self.POIsInfo = favoritePOIsInfo;
+            self.filteredPOIs = [];
+          
         }
      
 
     }
+
+    self.getCategories=function(){  
+        httpRequests.get("POIs/getPOIsCategories")
+        .then (function (response){
+            self.categories = response.data;
+            self.chosenCategories = [];
+            for (var i = 0; i < self.categories.length; i++){
+                self.chosenCategories.push(""+self.categories[i].ID)
+            }
+        }, function(response){
+             //------------TODO OPTIONAL handle error------------------------
+        });
+    }
+
+    self.chooseCategories=function (category,event) {
+        var idx = self.chosenCategories.indexOf(""+category);
+        if(!event.target.checked && idx != -1){
+            self.chosenCategories.splice(idx,1);
+        }
+        else if(event.target.checked && idx == -1){
+            self.chosenCategories.push(""+category);
+        }
+        self.filteredPOIs = [];
+        for (var i = 0; i < self.POIsInfo.length; i++){
+            var index = self.chosenCategories.indexOf(self.POIsInfo[i].CategoryID);
+            if( index != -1){
+                self.filteredPOIs.push(self.POIsInfo[i]);
+            }
+        }
+    }
+
 
     self.setPriorities=function(){
         var priorities = [];
