@@ -17,7 +17,6 @@ angular.module("parisApp")
     self.getPoiInfo=function(poiID){
         httpRequests.get("POIs/getPOIByID/"+poiID)
         .then (function (response){
-            console.log("hellooo")
             self.name = response.data.Name;
             self.description = response.data.Description;
             self.usersWatching = response.data.UsersWatching;

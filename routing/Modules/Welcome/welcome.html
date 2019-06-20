@@ -12,8 +12,8 @@
     <div id="randomPois">
         <div class="row">
             <div class="column" ng-repeat="rPOI in welcmCtrl.randPOIs">
-                <img ng-src="{{rPOI.Picture}}" style="width:100%" data-toggle="modal" data-target="#poiModal" ng-click="welcmCtrl.getPoiInfo(rPOI.ID)">
-                <center><h2>{{rPOI.Name}}</h2></center>
+                <img class="poiImage" ng-src="{{rPOI.Picture}}" style="width:100%" data-toggle="modal" data-target="#poiModal" ng-click="welcmCtrl.getPoiInfo(rPOI.ID)">
+                <center><h2 data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poi.ID)" style="cursor: pointer;">{{rPOI.Name}}</h2></center>
             </div>
         </div>
     </div>
@@ -21,19 +21,19 @@
 
 <div ng-if="$root.isLogin" ng-init="welcmCtrl.getRegUserPois()">
     
-    <h1> You may be interested in these POIs: </h1>
+    <h3> You may be interested in these POIs: </h3>
     <div class="row">
         <div class="column" ng-repeat="catPOI in welcmCtrl.poisByCat">
-            <img ng-src="{{catPOI.Picture}}" style="width:100%" data-toggle="modal" data-target="#poiModal" ng-click="welcmCtrl.getPoiInfo(catPOI.ID)">
-            <center><h2>{{catPOI.Name}}</h2></center>
+            <img class="poiImage" ng-src="{{catPOI.Picture}}" style="width:100%" data-toggle="modal" data-target="#poiModal" ng-click="welcmCtrl.getPoiInfo(catPOI.ID)">
+            <center><h2 data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poi.ID)" style="cursor: pointer;">{{catPOI.Name}}</h2></center>
         </div>
     </div>
     <br>
-    <h1> Two of your favorite POIs: </h1>
+    <h3> Two of your favorite POIs: </h3>
     <div class="row">
         <div class="column" ng-repeat="favPOI in welcmCtrl.favoritePois">
-            <img ng-src="{{favPOI.Picture}}" style="width:100%" data-toggle="modal" data-target="#poiModal" ng-click="welcmCtrl.getPoiInfo(favPOI.ID)">
-            <center><h2>{{favPOI.Name}}</h2></center>
+            <img class="poiImage" ng-src="{{favPOI.Picture}}" style="width:100%" data-toggle="modal" data-target="#poiModal" ng-click="welcmCtrl.getPoiInfo(favPOI.ID)">
+            <center><h2 data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poi.ID)" style="cursor: pointer;">{{favPOI.Name}}</h2></center>
         </div>
     </div>
 </div>

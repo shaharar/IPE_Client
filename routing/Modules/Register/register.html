@@ -1,6 +1,7 @@
 <div id="register" ng-init="regCtrl.start()">
-    <h1>Sign Up</h1>
-        <form name="registerForm" ng-submit="regCtrl.register(registerForm.$valid)" novalidate>
+    <center><h1>Sign Up</h1></center>
+    <br>
+        <form id="regForm" name="registerForm" ng-submit="regCtrl.register(registerForm.$valid)" novalidate>
 
             <!-- Username -->
             <div class="form-group">
@@ -68,6 +69,7 @@
               <label style="padding-left: 1%" ng-repeat="cat in regCtrl.categories">
                 <input type="checkbox" ng-click="regCtrl.chooseCategories(cat.ID)"> {{cat.Name}}
               </label>
+              <p ng-show="(regCtrl.chosenCategories.length < 2)">You must choose at leat 2 categories</p>
             </div>
           
             <!-- SecurityQ1 -->
@@ -78,6 +80,7 @@
               </select>
               <input type="text" id="a1" name="a1" ng-model="regCtrl.SecurityA1" required ng-minlength="1" ng-pattern="/^[a-zA-Z]*$/"
               />
+              <p ng-show="(registerForm.a1.$dirty || submitted) && registerForm.a1.$error.required">You must enter answer</p>
               <p ng-show="registerForm.a1.$error.pattern">Answer should contains letters only!</p>
             </div>
           
@@ -89,9 +92,10 @@
               </select>
               <input type="text" id="a2" name="a2" ng-model="regCtrl.SecurityA2" required ng-minlength="1" ng-pattern="/^[a-zA-Z]*$/"
               />
+              <p ng-show="(registerForm.a2.$dirty || submitted) && registerForm.a2.$error.required">You must enter answer</p>
               <p ng-show="registerForm.a2.$error.pattern">Answer should contains letters only!</p>
             </div>       
 
-            <button type="submit" ng-disabled="(registerForm.$invalid || regCtrl.chosenCategories.length < 2)">Register</button>
+            <button type="submit" id="submitRegBtn" ng-disabled="(registerForm.$invalid || regCtrl.chosenCategories.length < 2)">Register</button>
           </form>
     </div>

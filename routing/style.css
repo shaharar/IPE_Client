@@ -1,3 +1,22 @@
+/* --------------------------General-------------------------- */
+/* button {
+	position: absolute;
+	background-color: rgba(17, 17, 17, 0.952);
+	color: white;
+	text-align: center;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	font-size: 18px;
+	width: 10%;
+	height: 5%;
+	border-radius: 12px;
+	cursor: pointer;
+	left: 45%;
+	}  */
+
+.poiImage{
+	height: 300px;
+	/* width: 150px; */
+}
   /* --------------------------Menu-------------------------- */
   nav{
 	position: absolute;
@@ -50,6 +69,16 @@ a:hover{
 	color: #972424;
 }
 
+#welcome h3{
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	/* color: #972424; */
+	color: black;
+	background-color: rgba(158, 145, 145, 0.945);
+	text-align: center;
+	/* font-size: 350%; */
+	/* font-family: sans-serif bold; */
+}
+
 #welcome p{
 	/* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
 	font-size: 100%;
@@ -82,7 +111,7 @@ cursor: pointer;
 	margin-top: 6%;
 }
 
-  form#loginForm{
+form#loginForm{
 	height: 100%;
 }
 .logContainer {
@@ -175,3 +204,52 @@ cursor: pointer;
 	color: red;
 }
 
+#regForm{
+	padding-left: 30%;
+	/* width: 100%; */
+	/* border-style: solid black 20px; */
+}
+
+#submitRegBtn {
+	position: absolute;
+	background-color: rgba(17, 17, 17, 0.952);
+	color: white;
+	text-align: center;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	font-size: 18px;
+	width: 10%;
+	height: 5%;
+	border-radius: 12px;
+	cursor: pointer;
+	left: 45%;
+} 
+
+/* --------------------------POIs-------------------------- */
+#pois{
+	margin-top: 5%;
+}
+
+#myFavoritesBtn{
+	/* position: absolute; */
+	background-color: rgba(17, 17, 17, 0.952);
+	color: white;
+	text-align: center;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	font-size: 16px;
+	width: 10%;
+	height: 5%;
+	border-radius: 12px;
+	cursor: pointer;
+	/* left: 45%; */
+}
+
+#pois h1{
+	background-color: rgba(158, 145, 145, 0.945);
+	text-align: center;
+	font-size: 350%;
+	font-family: sans-serif bold;
+}
+
+.searchPoi{
+	right: 0px;
+}

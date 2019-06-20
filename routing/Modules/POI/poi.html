@@ -1,11 +1,85 @@
-<div ng-init="poiCtrl.start()">
+<div id="pois" ng-init="poiCtrl.start()">
     <div ng-init="poiCtrl.getAllPOIs()">
-        <div class="row">
-                <div class="column" ng-repeat="poi in poiCtrl.allPoiRes">
-                    <img ng-src="{{poi.Picture}}" style="width:100%" ng-click="poiCtrl.getPoiInfo(poi.ID)">
-                    <center><h2>{{poi.Name}}</h2></center>
-                </div>
+        <div>
+                <label for="poiName"><b>POI's Name: </b></label>
+                <input type="text" id="nameBySearch" ng-model="poiCtrl.nameSearched" placeholder="Enter name of POI" name="poiName">         
+        </div>
+         <img ng-src="/images/search.png" style="width:2%;cursor: pointer;" ng-click="poiCtrl.getPOIByName()" id="searchBtn">
+    <!-- <button ng-click="poiCtrl.getPOIByName()" id="searchBtn">Search</button> -->
+
+        <br>
+        <button ng-if="$root.isLogin" ng-click="poiCtrl.getFavoritePOIs()" id="myFavoritesBtn">My Favorites</button>
+
+        <div ng-if="poiCtrl.isSearch">
+                <center><img ng-src="{{poiCtrl.poiByNameRes.Picture}}" style="width:30%" data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poiCtrl.poiByNameRes.ID)">
+                <h2 data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poiCtrl.poiByNameRes.ID)" style="cursor: pointer;">{{poiCtrl.poiByNameRes.Name}}</h2>
+                <img ng-src={{poiCtrl.starImg}} ng-model="poiCtrl.starImg" style="width:5%" ng-click="poiCtrl.addToFavorites(poiCtrl.poiByNameRes.ID)"></center>        
+        </div>
+
+        <button ng-if="poiCtrl.isSearch" ng-click="poiCtrl.return()" id="returnBtn">Return</button>
+
+        <div ng-hide="poiCtrl.isSearch" id="byCategories">
+            <h1>Food</h1>
+            <div class="row">
+                    <div class="column" ng-repeat="poi in poiCtrl.poisByCat1">
+                        <img class="poiImage" ng-src="{{poi.Picture}}" style="width:100%" data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poi.ID)">
+                        <center><h2 data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poi.ID)" style="cursor: pointer;">{{poi.Name}}</h2></center>
+                        <center><img ng-src={{poiCtrl.starImg}} ng-model="poiCtrl.starImg" style="width:5%" ng-click="poiCtrl.addToFavorites(poi.ID)"></center>
+                    </div>
             </div>
+            <h1>Sightseeing</h1>
+            <div class="row">
+                    <div class="column" ng-repeat="poi in poiCtrl.poisByCat2">
+                        <img class="poiImage" ng-src="{{poi.Picture}}" style="width:100%" data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poi.ID)">
+                        <img ng-src={{poiCtrl.starImg}} ng-model="poiCtrl.starImg" style="width:5%" ng-click="poiCtrl.addToFavorites(poi.ID)">
+                        <center><h2 data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poi.ID)" style="cursor: pointer;">{{poi.Name}}</h2></center>
+                    </div>
+            </div>
+            <h1>Shopping</h1>
+            <div class="row">
+                    <div class="column" ng-repeat="poi in poiCtrl.poisByCat3">
+                        <img class="poiImage" ng-src="{{poi.Picture}}" style="width:100%" data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poi.ID)">
+                        <img ng-src={{poiCtrl.starImg}} ng-model="poiCtrl.starImg" style="width:5%" ng-click="poiCtrl.addToFavorites(poi.ID)">
+                        <center><h2 data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poi.ID)" style="cursor: pointer;">{{poi.Name}}</h2></center>
+                    </div>
+            </div>
+            <h1>Museums</h1>
+            <div class="row">
+                    <div class="column" ng-repeat="poi in poiCtrl.poisByCat4">
+                        <img class="poiImage" ng-src="{{poi.Picture}}" style="width:100%" data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poi.ID)">
+                        <img ng-src={{poiCtrl.starImg}} ng-model="poiCtrl.starImg" style="width:5%" ng-click="poiCtrl.addToFavorites(poi.ID)">
+                        <center><h2 data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poi.ID)" style="cursor: pointer;">{{poi.Name}}</h2></center>
+                    </div>
+            </div>
+        </div>
     </div>
-    <button ng-click="poiCtrl.getFavoritePOIs()">Favorites</button>
+
+
+    <div class="container">
+            <!-- Modal -->
+            <div class="modal fade" id="poiModal" role="dialog">
+              <div class="modal-dialog">
+              
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <center><h4 class="modal-title">POI's Information</h4></center>
+                  </div>
+                  <div class="modal-body">
+                    <p style="font-size:16px"><b>{{poiCtrl.name}}</b></p>
+                    <p> <img ng-src="{{poiCtrl.picture}}" style="width:40%"> </p>
+                    <p><b> Description: </b> {{poiCtrl.description}} </p>
+                    <p><b> Number of watchings: </b> {{poiCtrl.usersWatching}} </p>
+                    <p><b> Rank: </b> {{poiCtrl.rank}}% </p>
+                    <p><b> Review 1: </b> {{poiCtrl.review1}} </p>
+                    <p><b> Review 2: </b> {{poiCtrl.review2}} </p>                
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>        
+    </div>
 </div>

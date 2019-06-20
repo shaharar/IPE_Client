@@ -3,7 +3,6 @@ angular.module("parisApp")
     var self = this;
 
     self.start=function(){
-        console.log("enter start")
         self.chosenCategories = [];
         self.getQuestions();
         self.getCategories();
@@ -57,6 +56,10 @@ angular.module("parisApp")
     
     self.register=function(){
         console.log("enter register")
+        if(self.SecurityQ1 == self.SecurityQ2){
+            alert("Please choose different security questions");
+            return;
+        }
         let userDetails = {
             Username : self.Username,
             Password : self.Password,
