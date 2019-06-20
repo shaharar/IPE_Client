@@ -89,6 +89,7 @@ angular.module("parisApp")
             self.poiByNameRes = response.data[0];
             self.isSearch = true;
         }, function(response){
+            alert("No POIs were found");
             //------------TODO OPTIONAL handle error------------------------
        });
     }
