@@ -13,6 +13,10 @@
 	left: 45%;
 	}  */
 
+body{
+	background-image: url("/images/background.jpg");
+}
+
 .poiImage{
 	height: 300px;
 	/* width: 150px; */
@@ -73,7 +77,11 @@ a:hover{
 	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 	/* color: #972424; */
 	color: black;
-	background-color: rgba(158, 145, 145, 0.945);
+	/* background-color: rgba(158, 145, 145, 0.945); */
+	background-image: url("/images/flag.jpg");
+	background-repeat: no-repeat;
+	background-size: 100%;
+
 	text-align: center;
 	/* font-size: 350%; */
 	/* font-family: sans-serif bold; */
@@ -244,12 +252,28 @@ cursor: pointer;
 }
 
 #pois h1{
-	background-color: rgba(158, 145, 145, 0.945);
+	/* background-color: rgba(158, 145, 145, 0.945); */
+	background-image: url("/images/flag.jpg");
+	background-repeat: no-repeat;
+	background-size: 100%;
+
 	text-align: center;
 	font-size: 350%;
-	font-family: sans-serif bold;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .searchPoi{
 	right: 0px;
+}
+
+#addRankBtn{
+	background-color: rgba(41, 43, 78, 0.952);
+	color: white;
+	text-align: center;
+	/* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+	font-size: 15px bold;
+	width: 70px;
+	height: 5%;
+	border-radius: 10px;
+	cursor: pointer;
 }

@@ -13,7 +13,7 @@
         <div class="row">
             <div class="column" ng-repeat="rPOI in welcmCtrl.randPOIs">
                 <img class="poiImage" ng-src="{{rPOI.Picture}}" style="width:100%" data-toggle="modal" data-target="#poiModal" ng-click="welcmCtrl.getPoiInfo(rPOI.ID)">
-                <center><h2 data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poi.ID)" style="cursor: pointer;">{{rPOI.Name}}</h2></center>
+                <center><h2 data-toggle="modal" data-target="#poiModal" ng-click="welcmCtrl.getPoiInfo(rPOI.ID)" style="cursor: pointer;">{{rPOI.Name}}</h2></center>
             </div>
         </div>
     </div>
@@ -25,7 +25,7 @@
     <div class="row">
         <div class="column" ng-repeat="catPOI in welcmCtrl.poisByCat">
             <img class="poiImage" ng-src="{{catPOI.Picture}}" style="width:100%" data-toggle="modal" data-target="#poiModal" ng-click="welcmCtrl.getPoiInfo(catPOI.ID)">
-            <center><h2 data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poi.ID)" style="cursor: pointer;">{{catPOI.Name}}</h2></center>
+            <center><h2 data-toggle="modal" data-target="#poiModal" ng-click="welcmCtrl.getPoiInfo(catPOI.ID)" style="cursor: pointer;">{{catPOI.Name}}</h2></center>
         </div>
     </div>
     <br>
@@ -33,7 +33,7 @@
     <div class="row">
         <div class="column" ng-repeat="favPOI in welcmCtrl.favoritePois">
             <img class="poiImage" ng-src="{{favPOI.Picture}}" style="width:100%" data-toggle="modal" data-target="#poiModal" ng-click="welcmCtrl.getPoiInfo(favPOI.ID)">
-            <center><h2 data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poi.ID)" style="cursor: pointer;">{{favPOI.Name}}</h2></center>
+            <center><h2 data-toggle="modal" data-target="#poiModal" ng-click="welcmCtrl.getPoiInfo(favPOI.ID)" style="cursor: pointer;">{{favPOI.Name}}</h2></center>
         </div>
     </div>
 </div>

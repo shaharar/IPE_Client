@@ -15,12 +15,15 @@
     </head>
     <body ng-controller="indexController as idxCtrl" ng-init="idxCtrl.start()">
         <nav>
+            <!-- <img ng-src="/images/flag.jpg" style="width:3.8%;"> -->
             <li><a style="color: black">Hello {{$root.username}} </a></li>
             <li><a href="#!/">Home</a></li>
             <li><a href="#!/poi">POIs</a></li>
             <li><a href="#!/about">About</a></li>
             <li><a ng-if="!$root.isLogin" href="#!/login">Login</a></li>
             <li><a ng-if="$root.isLogin" ng-click="idxCtrl.logout()" href="#/">Logout</a></li>
+            <!-- <img ng-src="/images/flag.jpg" style="width:3.8%;"> -->
+            <img ng-src="/images/croissant2.png" style="width:3.8%;">
         </nav>
         
     <div  ng-view></div>
