@@ -52,8 +52,20 @@ angular.module("parisApp")
             self.description = response.data.Description;
             self.usersWatching = response.data.UsersWatching;
             self.rank = response.data.Rank;
-            self.review1 = response.data.Review1;
-            self.review2 = response.data.Review2;
+            if (!response.data.Review1){
+                self.review1 = "none";
+            }
+            else{
+                self.review1 = response.data.Review1.Rank + ", " + response.data.Review1.Review + ", " + response.data.Review1.Date;
+            }
+            if (!response.data.Review2){
+                self.review2 = "none";
+            }
+            else{
+                self.review2 = response.data.Review2.Rank + ", " + response.data.Review2.Review + ", " + response.data.Review2.Date;
+            }
+            // self.review1 = response.data.Review1;
+            // self.review2 = response.data.Review2;
             self.picture = response.data.Picture;
         });
     }
