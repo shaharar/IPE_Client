@@ -1,5 +1,5 @@
 angular.module("parisApp")
-.controller("poiController", ['httpRequests', '$window',function (httpRequests,$window) {
+.controller("poiController", ['httpRequests', '$window','$rootScope',function (httpRequests,$window,$rootScope) {
     var self = this;
 
     self.start=function(){
@@ -9,6 +9,19 @@ angular.module("parisApp")
         self.poisByCat3 = [];
         self.poisByCat4 = [];
         self.starImg ="/images/greyStar.png";
+        self.goldStarImg = "/images/goldStar.png";
+        self.favImg = [];
+        for (var i = 0; i < 21; i++){
+            if ($rootScope.favoritesList.indexOf(""+i) != -1){
+                self.favImg[i] = self.goldStarImg;
+            }
+            else{
+                self.favImg[i] = self.starImg;
+            }
+        }
+        self.numOfFav = $rootScope.favoritesList.length;
+        console.log(self.favImg);
+        // self.addToFav = false;
         self.nameForSearch = "";
         self.isSearch = false;
         self.chosenCategories = [];
@@ -93,9 +106,59 @@ angular.module("parisApp")
        });
     }
 
-    self.addToFavorites=function(poiId){
-        self.starImg ="/images/goldStar.png";
+    self.updateFavorites=function(poiId){
+        if(self.favImg[poiId] == self.starImg){
+            self.addToFavorites(poiId);
+        }
+        else{
+            self.removeFromFavorites(poiId);
+        }
     }
+
+    self.addToFavorites=function(poiId){
+        // self.starImg ="/images/goldStar.png";
+        console.log("add");
+        console.log(poiId);
+        self.favImg[poiId] = self.goldStarImg;
+        $rootScope.favoritesList.push(poiId);
+        self.numOfFav++;
+        self.saveFavoritePOIs();
+        // self.addToFav = true;
+    }
+
+    self.removeFromFavorites=function(poiId){
+        console.log("remove");
+        console.log(poiId);
+        self.favImg[poiId] = self.starImg;
+        var currFavoritesList = $rootScope.favoritesList;
+        currFavoritesList.splice(currFavoritesList.indexOf(poiId),1);
+        $window.sessionStorage.setItem("favorites",currFavoritesList);
+        $rootScope.favoritesList =  $window.sessionStorage.getItem("favorites").split(',');
+        self.numOfFav--;
+        self.saveFavoritePOIs();
+        // self.addToFav = false;
+    }
+
+    self.saveFavoritePOIs=function(){
+        var favoritePOIsId = $rootScope.favoritesList;
+        var favoritePOIsPriorities = [];
+        for(var i = 0; i < favoritePOIsId.length; i++){
+            favoritePOIsPriorities.push(i);
+        }
+        let favoritesDetails = {
+            favorites : favoritePOIsId,
+            priorities : favoritePOIsPriorities
+        }
+        httpRequests.post("POIs/private/saveFavoritePOIs", favoritesDetails) 
+        .then (function (response){
+            if (response.data.message == "Favorites list was updated"){
+                alert("Changes were saved successfully");
+            }
+        }, function(response){
+                             //------------TODO OPTIONAL handle error------------------------
+
+        })
+}
     
 
     self.getPOIByID=function(poiId){
@@ -108,6 +171,7 @@ angular.module("parisApp")
     }
 
     self.getPOIByName=function(){
+        console.log("search");
         httpRequests.get("POIs/getPOIByName/"+self.nameSearched)
         .then (function (response){
             console.log(response.data)

@@ -3,7 +3,7 @@
         <div id="searchByName" style="text-align-last: right">
                 <label for="poiName" style="font-size: 14px"><b>POI's Name:  </b></label>
                 <input type="text" id="nameBySearch" ng-model="poiCtrl.nameSearched" placeholder="Enter name of POI" style="text-align-last: left" name="poiName">         
-                <img ng-src="/images/search.png" style="width:2%;cursor: pointer;" ng-click="poiCtrl.getPOIByName()" id="searchBtn">
+                <img ng-src="/images/search.png" ng-click="poiCtrl.getPOIByName()" id="searchBtn">
         </div>
     <!-- <button ng-click="poiCtrl.getPOIByName()" id="searchBtn">Search</button> -->
     <center>
@@ -14,12 +14,15 @@
           </label>
         </div>
       </center>
-        <button ng-if="$root.isLogin" ng-click="poiCtrl.getFavoritePOIs()" id="myFavoritesBtn">My Favorites</button>
+        <button ng-if="$root.isLogin" ng-model="poiCtrl.numOfFav" ng-click="poiCtrl.getFavoritePOIs()" id="myFavoritesBtn">My Favorites ({{poiCtrl.numOfFav}})</button>
 
         <center><div ng-if="poiCtrl.isSearch">
                 <center><img ng-src="{{poiCtrl.poiByNameRes.Picture}}" style="width:30%" data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poiCtrl.poiByNameRes.ID)">
                 <h2 data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poiCtrl.poiByNameRes.ID)" style="cursor: pointer;">{{poiCtrl.poiByNameRes.Name}}</h2>
-                <img ng-if="$root.isLogin" ng-src={{poiCtrl.starImg}} ng-model="poiCtrl.starImg" style="width:5%" ng-click="poiCtrl.addToFavorites(poiCtrl.poiByNameRes.ID)"></center>
+                <img ng-if="$root.isLogin" ng-src={{poiCtrl.favImg[poiCtrl.poiByNameRes.ID]}} ng-model="poiCtrl.favImg[poiCtrl.poiByNameRes.ID]" style="width:5%" ng-click="poiCtrl.updateFavorites(poiCtrl.poiByNameRes.ID)">
+                <!-- <img ng-if="$root.isLogin" ng-show="poiCtrl.addToFav" ng-src={{poiCtrl.goldStarImg}} ng-model="poiCtrl.goldStarImg" style="width:5%" ng-click="poiCtrl.removeFromFavorites(poiCtrl.poiByNameRes.ID)"> -->
+
+              </center>
                 <button ng-if="$root.isLogin" id="addRankBtn">Add Rank</button>       
         </div></center>
 
@@ -37,7 +40,12 @@
                           <h2 style="display: inline" data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poi.ID)" style="cursor: pointer;">{{poi.Name}}</h2> -->
                        
                         <center><h2 data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poi.ID)" style="cursor: pointer;">{{poi.Name}}</h2>
-                        <img ng-if="$root.isLogin" ng-src={{poiCtrl.starImg}} ng-model="poiCtrl.starImg" style="width:20px" ng-click="poiCtrl.addToFavorites(poi.ID)">
+                        <!-- <img ng-if="$root.isLogin" ng-src={{poiCtrl.starImg}} ng-model="poiCtrl.starImg" style="width:20px" ng-click="poiCtrl.addToFavorites(poi.ID)"> -->
+                        <!-- <img ng-if="$root.isLogin" ng-hide="poiCtrl.addToFav" ng-src={{poiCtrl.starImg}} ng-model="poiCtrl.starImg" style="width:5%" ng-click="poiCtrl.addToFavorites(poi.ID)"> -->
+                        <!-- <img ng-if="$root.isLogin" ng-show="poiCtrl.addToFav" ng-src={{poiCtrl.goldStarImg}} ng-model="poiCtrl.goldStarImg" style="width:5%" ng-click="poiCtrl.removeFromFavorites(poi.ID)"> -->
+                        <img ng-if="$root.isLogin" ng-src={{poiCtrl.favImg[poi.ID]}} ng-model="poiCtrl.favImg[poi.ID]" style="width:5%" ng-click="poiCtrl.updateFavorites(poi.ID)">
+
+
                         <button ng-if="$root.isLogin" data-toggle="modal" data-target="#addRankModal" ng-click="poiCtrl.setIDAddRank(poi.ID)" id="addRankBtn">Add Rank</button></center>       
                     </div>
             </div>
@@ -50,8 +58,12 @@
                     <div class="column" ng-repeat="poi in poiCtrl.poisByCat2">
                         <img class="poiImage" ng-src="{{poi.Picture}}" style="width:100%" data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poi.ID)">
                         <center><h2 data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poi.ID)" style="cursor: pointer;">{{poi.Name}}</h2>
-                          <img ng-if="$root.isLogin" ng-src={{poiCtrl.starImg}} ng-model="poiCtrl.starImg" style="width:20px" ng-click="poiCtrl.addToFavorites(poi.ID)">
-                        
+                          <!-- <img ng-if="$root.isLogin" ng-src={{poiCtrl.starImg}} ng-model="poiCtrl.starImg" style="width:20px" ng-click="poiCtrl.addToFavorites(poi.ID)"> -->
+                          <!-- <img ng-if="$root.isLogin" ng-hide="poiCtrl.addToFav" ng-src={{poiCtrl.starImg}} ng-model="poiCtrl.starImg" style="width:5%" ng-click="poiCtrl.addToFavorites(poi.ID)"> -->
+                          <!-- <img ng-if="$root.isLogin" ng-show="poiCtrl.addToFav" ng-src={{poiCtrl.goldStarImg}} ng-model="poiCtrl.goldStarImg" style="width:5%" ng-click="poiCtrl.removeFromFavorites(poi.ID)"> -->
+                          <img ng-if="$root.isLogin" ng-src={{poiCtrl.favImg[poi.ID]}} ng-model="poiCtrl.favImg[poi.ID]" style="width:5%" ng-click="poiCtrl.updateFavorites(poi.ID)">
+
+
                         <button ng-if="$root.isLogin" data-toggle="modal" data-target="#addRankModal" ng-click="poiCtrl.setIDAddRank(poi.ID)" id="addRankBtn">Add Rank</button></center>       
                     </div>
             </div>
@@ -63,7 +75,12 @@
               <div class="row">
                       <div class="column" ng-repeat="poi in poiCtrl.poisByCat3">
                           <img class="poiImage" ng-src="{{poi.Picture}}" style="width:100%" data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poi.ID)">
-                          <center><img ng-if="$root.isLogin" ng-src={{poiCtrl.starImg}} ng-model="poiCtrl.starImg" style="width:20px" ng-click="poiCtrl.addToFavorites(poi.ID)">
+                          <!-- <center><img ng-if="$root.isLogin" ng-src={{poiCtrl.starImg}} ng-model="poiCtrl.starImg" style="width:20px" ng-click="poiCtrl.addToFavorites(poi.ID)"> -->
+                            <!-- <img ng-if="$root.isLogin" ng-hide="poiCtrl.addToFav" ng-src={{poiCtrl.starImg}} ng-model="poiCtrl.starImg" style="width:5%" ng-click="poiCtrl.addToFavorites(poi.ID)"> -->
+                            <!-- <img ng-if="$root.isLogin" ng-show="poiCtrl.addToFav" ng-src={{poiCtrl.goldStarImg}} ng-model="poiCtrl.goldStarImg" style="width:5%" ng-click="poiCtrl.removeFromFavorites(poi.ID)"> -->
+                            <img ng-if="$root.isLogin" ng-src={{poiCtrl.favImg[poi.ID]}} ng-model="poiCtrl.favImg[poi.ID]" style="width:5%" ng-click="poiCtrl.updateFavorites(poi.ID)">
+
+
                           <h2 data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poi.ID)" style="cursor: pointer;">{{poi.Name}}</h2>
                           <button ng-if="$root.isLogin" data-toggle="modal" data-target="#addRankModal" ng-click="poiCtrl.setIDAddRank(poi.ID)" id="addRankBtn">Add Rank</button></center>       
                       </div>
@@ -76,7 +93,12 @@
               <div class="row">
                       <div class="column" ng-repeat="poi in poiCtrl.poisByCat4">
                           <center><img class="poiImage" ng-src="{{poi.Picture}}" style="width:100%" data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poi.ID)">
-                          <img ng-if="$root.isLogin" ng-src={{poiCtrl.starImg}} ng-model="poiCtrl.starImg" style="width:20px" ng-click="poiCtrl.addToFavorites(poi.ID)">
+                          <!-- <img ng-if="$root.isLogin" ng-src={{poiCtrl.starImg}} ng-model="poiCtrl.starImg" style="width:20px" ng-click="poiCtrl.addToFavorites(poi.ID)"> -->
+                          <!-- <img ng-if="$root.isLogin" ng-hide="poiCtrl.addToFav" ng-src={{poiCtrl.starImg}} ng-model="poiCtrl.starImg" style="width:5%" ng-click="poiCtrl.addToFavorites(poi.ID)"> -->
+                          <!-- <img ng-if="$root.isLogin" ng-show="poiCtrl.addToFav" ng-src={{poiCtrl.goldStarImg}} ng-model="poiCtrl.goldStarImg" style="width:5%" ng-click="poiCtrl.removeFromFavorites(poi.ID)"> -->
+                          <img ng-if="$root.isLogin" ng-src={{poiCtrl.favImg[poi.ID]}} ng-model="poiCtrl.favImg[poi.ID]" style="width:5%" ng-click="poiCtrl.updateFavorites(poi.ID)">
+
+
                           <h2 data-toggle="modal" data-target="#poiModal" ng-click="poiCtrl.getPoiInfo(poi.ID)" style="cursor: pointer;">{{poi.Name}}</h2>
                           <button ng-if="$root.isLogin" data-toggle="modal" data-target="#addRankModal" ng-click="poiCtrl.setIDAddRank(poi.ID)" id="addRankBtn">Add Rank</button></center>       
                       </div>

@@ -18,6 +18,8 @@ angular.module("parisApp")
 
     self.getPoisInfo=function(){
         var favoritePOIsId = $rootScope.favoritesList;
+        console.log("favorites:")
+        console.log(favoritePOIsId);
         self.POIsInfo = [];
         self.filteredPOIs = [];
         if (favoritePOIsId[0] == ""){

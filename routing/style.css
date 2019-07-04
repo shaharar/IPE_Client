@@ -267,6 +267,10 @@ cursor: pointer;
 	right: 0px;
 }
 
+#searchBtn{
+	width:8%;
+}
+
 #addRankBtn{
 	background-color: rgba(41, 43, 78, 0.952);
 	color: white;
