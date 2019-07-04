@@ -73,20 +73,31 @@ angular.module("parisApp")
     // }
 
     self.getUserQuestion=function(){
-        console.log("enter Q")
-        console.log(self.currUser.Username)
+        console.log(self.currUser.Username);
+        if(self.currUser.Username == "" || typeof(self.currUser.Username) == 'undefined'){
+            alert("Please enter your username");
+            self.usernameEntered = false;
+            return;
+        }
+        self.usernameEntered = true;
+        console.log(self.currUser.Username);
         // self.user.Username = self.currUser.Username;
-        // console.log(self.user.Username)
         httpRequests.post("Users/getUserQuestions",self.currUser)
         .then (function (response){
+            if(response.data.message == "Username is invalid"){
+                alert(response.data.message);
+                self.usernameValid = false;
+                return;
+            }
             self.currUser.SecurityQ = response.data[0].Q1;
+            self.usernameValid = true;
         },function(response){
 
         });
     }
 
     self.restorePassword=function(){
-        //-------------user is a json of:'{ "Username":, "SecurityQ":, "SecurityA":}'-----------
+        //-------------currUser is a json of:'{ "Username":, "SecurityQ":, "SecurityA":}'-----------
         httpRequests.post("Users/retrievePassword", self.currUser) 
         .then (function (response){
                 alert("Your Password is: " + response.data.message);

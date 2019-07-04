@@ -93,7 +93,7 @@ a:hover{
 }
 
 #randomPois{
-	margin-top: 10%;
+	margin-top: 2%;
 }
 
 /* Welcome Buttons */
@@ -142,9 +142,10 @@ display: block;
 }
 
 #login h2{
-	color: #b85e5e;
+	color: #972424;
+	/* color: #b85e5e; */
 	text-align: center;
-	font-size: 200%;
+	font-size: 240%;
 	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 /* image in Login window */
@@ -175,7 +176,7 @@ left: 45%;
 }
 /* restore password */
 .restorePswBtn{
-position: absolute;
+/* position: absolute; */
 background-color: rgba(17, 17, 17, 0.952);
 color: white;
 text-align: center;
@@ -188,14 +189,14 @@ cursor: pointer;
 }
 /* --------------------------about-------------------------- */
 #about{
-	margin-top: 5%;
+	margin-top: 4%;
 }
 
 #about h1{
 	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 	color: #972424;
+	padding-left: 3%;
 }
-
 /* --------------------------Register-------------------------- */
 
 #register{
@@ -275,5 +276,17 @@ cursor: pointer;
 	width: 70px;
 	height: 5%;
 	border-radius: 10px;
+	cursor: pointer;
+}
+
+.addReviewBtn{
+	background-color: rgba(17, 17, 17, 0.952);
+	color: white;
+	text-align: center;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	font-size: 14px;
+	width: 25%;
+	height: 20%;
+	border-radius: 17px;
 	cursor: pointer;
 }
