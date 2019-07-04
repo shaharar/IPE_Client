@@ -17,7 +17,7 @@
         </center>
         <br></br>
         <br></br>
-        <div ng-if="favCtrl.sortBy == 'Rank'" ng-repeat="poi in favCtrl.filteredPOIs | orderBy: favCtrl.sortBy">
+        <div ng-if="favCtrl.sortBy == 'Rank'" ng-repeat="poi in favCtrl.filteredPOIs | orderBy: favCtrl.sortBy : true">
                 <div>
                         <center><h2 data-toggle="modal" data-target="#poiModal" ng-click="favCtrl.getPoiInfo(poi.ID)" style="cursor: pointer;">{{poi.Name}}</h2></center>
                         <center><h2 ng-if="favCtrl.sortType == 'Rank'">{{poi.Rank}}%</h2></center>

@@ -24,6 +24,7 @@ angular.module("parisApp")
             self.review1 = response.data.Review1;
             self.review2 = response.data.Review2;
             self.picture = response.data.Picture;
+            self.ID = response.data.ID;
         });
     }
 
@@ -58,4 +59,6 @@ angular.module("parisApp")
     self.login=function(){
         $window.location.href = "#!/login";
     }
+
+    
 }]);

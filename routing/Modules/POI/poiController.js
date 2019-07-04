@@ -1,6 +1,8 @@
 angular.module("parisApp")
-.controller("poiController", ['httpRequests', '$window','$rootScope',function (httpRequests,$window,$rootScope) {
+.controller("poiController", ['httpRequests', '$window','$rootScope', '$scope', function (httpRequests,$window,$rootScope,$scope) {
     var self = this;
+    $scope.sortTypes = ['Default','Rank'];
+    self.sortBy = 'Default';
 
     self.start=function(){
         console.log("Start")
@@ -27,6 +29,10 @@ angular.module("parisApp")
         self.chosenCategories = [];
         self.rankOptions = [1,2,3,4,5];
         self.getCategories();
+    }
+
+    self.setSortType=function(){
+        self.sortBy = self.sortType;
     }
 
 
@@ -101,6 +107,7 @@ angular.module("parisApp")
             self.review1 = response.data.Review1;
             self.review2 = response.data.Review2;
             self.picture = response.data.Picture;
+            self.ID = response.data.ID;
         }, function(response){
             //------------TODO OPTIONAL handle error------------------------
        });
