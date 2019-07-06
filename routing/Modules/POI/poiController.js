@@ -5,7 +5,6 @@ angular.module("parisApp")
     self.sortBy = 'Default';
 
     self.start=function(){
-        console.log("Start")
         self.poisByCat1 = [];
         self.poisByCat2 = [];
         self.poisByCat3 = [];
@@ -22,7 +21,6 @@ angular.module("parisApp")
             }
         }
         self.numOfFav = $rootScope.favoritesList.length;
-        console.log(self.favImg);
         // self.addToFav = false;
         self.nameForSearch = "";
         self.isSearch = false;
@@ -42,7 +40,6 @@ angular.module("parisApp")
             self.allPoiRes = response.data;
             self.setPoisByCatLists();
         }, function(response){
-            //------------TODO OPTIONAL handle error------------------------
         });
     }
 
@@ -74,7 +71,6 @@ angular.module("parisApp")
                 self.chosenCategories.push(""+self.categories[i].ID)
             }
         }, function(response){
-            //------------TODO OPTIONAL handle error------------------------
         });
     }
 
@@ -93,7 +89,6 @@ angular.module("parisApp")
         .then (function (response){
             self.categories = response.data;
         }, function(response){
-             //------------TODO OPTIONAL handle error------------------------
         });
     }
 
@@ -119,7 +114,6 @@ angular.module("parisApp")
             self.picture = response.data.Picture;
             self.ID = response.data.ID;
         }, function(response){
-            //------------TODO OPTIONAL handle error------------------------
        });
     }
 
@@ -134,8 +128,6 @@ angular.module("parisApp")
 
     self.addToFavorites=function(poiId){
         // self.starImg ="/images/goldStar.png";
-        console.log("add");
-        console.log(poiId);
         self.favImg[poiId] = self.goldStarImg;
         $rootScope.favoritesList.push(poiId);
         self.numOfFav++;
@@ -144,8 +136,6 @@ angular.module("parisApp")
     }
 
     self.removeFromFavorites=function(poiId){
-        console.log("remove");
-        console.log(poiId);
         self.favImg[poiId] = self.starImg;
         var currFavoritesList = $rootScope.favoritesList;
         currFavoritesList.splice(currFavoritesList.indexOf(poiId),1);
@@ -172,8 +162,6 @@ angular.module("parisApp")
                 alert("Changes were saved successfully");
             }
         }, function(response){
-                             //------------TODO OPTIONAL handle error------------------------
-
         })
 }
     
@@ -183,15 +171,12 @@ angular.module("parisApp")
         .then (function (response){
             self.poiRes = response.data;
         }, function(response){
-            //------------TODO OPTIONAL handle error------------------------
        });
     }
 
     self.getPOIByName=function(){
-        console.log("search");
         httpRequests.get("POIs/getPOIByName/"+self.nameSearched)
         .then (function (response){
-            console.log(response.data)
             self.poiByNameRes = response.data[0];
             self.isSearch = true;
         }, function(response){
@@ -218,7 +203,6 @@ angular.module("parisApp")
             Rank: self.rankInput,
             Review: self.reviewInput
         }
-        console.log(newReview)
         httpRequests.post("POIs/private/addRank/", newReview)
             .then(function (response) {
                 if (response.data.message == "Review added successfuly" || 
@@ -230,11 +214,6 @@ angular.module("parisApp")
                 return;
             });
     }
-
-
-        //  TODO-----------add to favorites ???-------------------------------------
-
-
 }]);
 
 

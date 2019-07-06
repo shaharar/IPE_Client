@@ -1,101 +1,108 @@
 <div id="register" ng-init="regCtrl.start()">
     <center><h1>Sign Up</h1></center>
-    <br>
-        <form id="regForm" name="registerForm" ng-submit="regCtrl.register(registerForm.$valid)" novalidate>
-
-            <!-- Username -->
-            <div class="form-group">
-              <label>Username: </label>
-              <input type="text" name="username"  ng-model="regCtrl.Username" required ng-minlength="3" ng-maxlength="8"
-                ng-pattern="/^[a-zA-Z]*$/">
-              <p ng-show="(registerForm.username.$dirty || submitted) && registerForm.username.$error.required">You must enter Username.</p>
-              <p ng-show="registerForm.username.$error.pattern || registerForm.username.$error.minlength || registerForm.username.$error.maxlength">Username need to be 3-8 letters only</p>
-            </div>
-          
-            <!-- Password -->
-            <div class="form-group">
-              <label>Password: </label>
-              <input type="password" name="password"  ng-model="regCtrl.Password" required
-                ng-pattern="/(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{5,10})$/">
-              <p ng-show="(registerForm.password.$dirty || submitted) && registerForm.password.$error.required">You must enter password.</p>
-              <p ng-show="registerForm.password.$error.pattern || registerForm.password.$error.minlength || registerForm.password.$error.maxlength">Your password need to be 5-10 characters long, and contains only letters and numbers</p>
-            </div>
-          
-            <!-- First Name -->
-            <div class="form-group">
-              <label>First name: </label>
-              <input type="text" name="Fname" ng-model="regCtrl.FirstName" ng-pattern="/^[a-zA-Z]*$/" required>
-              <p ng-show="(registerForm.Fname.$dirty || submitted) && registerForm.Fname.$error.required">You must enter First Name</p>
-              <p ng-show="registerForm.Fname.$error.pattern">Should contains only letters</p>
-            </div>
-          
-            <!-- Last Name -->
-            <div class="form-group">
-              <label>Last name: </label>
-              <input type="text" name="Lname" ng-model="regCtrl.LastName" ng-pattern="/^[a-zA-Z]*$/" required>
-              <p ng-show="(registerForm.Lname.$dirty || submitted) && registerForm.Lname.$error.required">You must enter Last Name</p>
-              <p ng-show="registerForm.Lname.$error.pattern">Should contains only letters</p>
-            </div>
-          
-            <!-- City -->
-            <div class="form-group">
-              <label>City: </label>
-              <input type="text" name="City" ng-model="regCtrl.City" ng-pattern="/^[a-zA-Z]*$/" required ng-minlength="2">
-              <p ng-show="(registerForm.City.$dirty || submitted) && registerForm.City.$error.required || registerForm.City.$error.minlength">You must enter City with at least 2 letters</p>
-              <p ng-show="registerForm.City.$error.pattern">Should contains only letters</p>
-            </div>
-          
-            <!-- Country -->
-            <div class="form-group">
-              <label>Country: </label>
-              <select name="Country" ng-model="regCtrl.Country" required autofocus>
-                <option ng-repeat="country in regCtrl.countries">{{country}}</option>
-              </select>
-              <p ng-show="(registerForm.Country.$dirty || submitted) && registerForm.Country.$error.required">You must choose Country</p>
-            </div>
-          
-            <!-- Email -->
-            <div class="form-group">
-              <label>Email: </label>
-              <input type="email" name="Email" ng-model="regCtrl.Email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required>
-              <p ng-show="(registerForm.Email.$dirty || submitted) && registerForm.Email.$error.required">You must enter an Email address</p>
-              <p ng-show="registerForm.Email.$error.pattern">This is not a valid Email address</p>
-            </div>
-          
-            <!-- Categories -->
-            <div class="form-group">
-              <label>Select at least 2 categories you are interesed in:</label>
+    <!-- <br> -->
+    <div id="wrap">
+        <div id="wrap2">   
+          <form id="regForm" name="registerForm" ng-submit="regCtrl.register(registerForm.$valid)" novalidate>
               <br>
-              <label style="padding-left: 1%" ng-repeat="cat in regCtrl.categories">
-                <input type="checkbox" ng-click="regCtrl.chooseCategories(cat.ID)"> {{cat.Name}}
-              </label>
-              <p ng-show="(regCtrl.chosenCategories.length < 2)">You must choose at leat 2 categories</p>
-            </div>
-          
-            <!-- SecurityQ1 -->
-            <div class="form-group">
-              <label>Choose first security question:</label>
-              <select id="q1" ng-model="regCtrl.SecurityQ1" required>
-                <option ng-repeat="q in regCtrl.questions">{{q}}</option>
-              </select>
-              <input type="text" id="a1" name="a1" ng-model="regCtrl.SecurityA1" required ng-minlength="1" ng-pattern="/^[a-zA-Z]*$/"
-              />
-              <p ng-show="(registerForm.a1.$dirty || submitted) && registerForm.a1.$error.required">You must enter answer</p>
-              <p ng-show="registerForm.a1.$error.pattern">Answer should contains letters only!</p>
-            </div>
-          
-            <!-- SecurityQ2 -->
-            <div class="form-group">
-              <label>Choose second security question:</label>
-              <select id="q2" ng-model="regCtrl.SecurityQ2" required>
-                <option ng-repeat="q in regCtrl.questions">{{q}}</option>
-              </select>
-              <input type="text" id="a2" name="a2" ng-model="regCtrl.SecurityA2" required ng-minlength="1" ng-pattern="/^[a-zA-Z]*$/"
-              />
-              <p ng-show="(registerForm.a2.$dirty || submitted) && registerForm.a2.$error.required">You must enter answer</p>
-              <p ng-show="registerForm.a2.$error.pattern">Answer should contains letters only!</p>
-            </div>       
+              <!-- Username -->
+              <div class="form-group">
+                <label>Username: </label>
+                <input type="text" name="username"  ng-model="regCtrl.Username" required ng-minlength="3" ng-maxlength="8"
+                  ng-pattern="/^[a-zA-Z]*$/">
+                <p ng-show="(registerForm.username.$dirty || submitted) && registerForm.username.$error.required">You must enter Username.</p>
+                <p ng-show="registerForm.username.$error.pattern || registerForm.username.$error.minlength || registerForm.username.$error.maxlength">Username need to be 3-8 letters only</p>
+              </div>
+            
+              <!-- Password -->
+              <div class="form-group">
+                <label>Password: </label>
+                <input type="password" name="password"  ng-model="regCtrl.Password" required
+                  ng-pattern="/(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{5,10})$/">
+                <p ng-show="(registerForm.password.$dirty || submitted) && registerForm.password.$error.required">You must enter password.</p>
+                <p ng-show="registerForm.password.$error.pattern || registerForm.password.$error.minlength || registerForm.password.$error.maxlength">Your password need to be 5-10 characters long, and contains only letters and numbers</p>
+              </div>
+            
+              <!-- First Name -->
+              <div class="form-group">
+                <label>First name: </label>
+                <input type="text" name="Fname" ng-model="regCtrl.FirstName" ng-pattern="/^[a-zA-Z]*$/" required>
+                <p ng-show="(registerForm.Fname.$dirty || submitted) && registerForm.Fname.$error.required">You must enter First Name</p>
+                <p ng-show="registerForm.Fname.$error.pattern">Should contains only letters</p>
+              </div>
+            
+              <!-- Last Name -->
+              <div class="form-group">
+                <label>Last name: </label>
+                <input type="text" name="Lname" ng-model="regCtrl.LastName" ng-pattern="/^[a-zA-Z]*$/" required>
+                <p ng-show="(registerForm.Lname.$dirty || submitted) && registerForm.Lname.$error.required">You must enter Last Name</p>
+                <p ng-show="registerForm.Lname.$error.pattern">Should contains only letters</p>
+              </div>
+            
+              <!-- City -->
+              <div class="form-group">
+                <label>City: </label>
+                <input type="text" name="City" ng-model="regCtrl.City" ng-pattern="/^[a-zA-Z]*$/" required ng-minlength="2">
+                <p ng-show="(registerForm.City.$dirty || submitted) && registerForm.City.$error.required || registerForm.City.$error.minlength">You must enter City with at least 2 letters</p>
+                <p ng-show="registerForm.City.$error.pattern">Should contains only letters</p>
+              </div>
+            
+              <!-- Country -->
+              <div class="form-group">
+                <label>Country: </label>
+                <select name="Country" ng-model="regCtrl.Country" required autofocus>
+                  <option ng-repeat="country in regCtrl.countries">{{country}}</option>
+                </select>
+                <p ng-show="(registerForm.Country.$dirty || submitted) && registerForm.Country.$error.required">You must choose Country</p>
+              </div>
+            
+              <!-- Email -->
+              <div class="form-group">
+                <label>Email: </label>
+                <input type="email" name="Email" ng-model="regCtrl.Email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required>
+                <p ng-show="(registerForm.Email.$dirty || submitted) && registerForm.Email.$error.required">You must enter an Email address</p>
+                <p ng-show="registerForm.Email.$error.pattern">This is not a valid Email address</p>
+              </div>
+            
+              <!-- Categories -->
+              <div class="form-group">
+                <label>Select at least 2 categories you are interesed in:</label>
+                <br>
+                <label style="padding-left: 1%" ng-repeat="cat in regCtrl.categories">
+                  <input type="checkbox" ng-click="regCtrl.chooseCategories(cat.ID)"> {{cat.Name}}
+                </label>
+                <p ng-show="(regCtrl.chosenCategories.length < 2)">You must choose at leat 2 categories</p>
+              </div>
+            
+              <!-- SecurityQ1 -->
+              <div class="form-group">
+                <label>Choose first security question:</label>
+                <select id="q1" ng-model="regCtrl.SecurityQ1" required>
+                  <option ng-repeat="q in regCtrl.questions">{{q}}</option>
+                </select>
+                <input type="text" id="a1" name="a1" ng-model="regCtrl.SecurityA1" required ng-minlength="1" ng-pattern="/^[a-zA-Z]*$/"
+                />
+                <p ng-show="(registerForm.a1.$dirty || submitted) && registerForm.a1.$error.required">You must enter answer</p>
+                <p ng-show="registerForm.a1.$error.pattern">Answer should contains letters only!</p>
+              </div>
+            
+              <!-- SecurityQ2 -->
+              <div class="form-group">
+                <label>Choose second security question:</label>
+                <select id="q2" ng-model="regCtrl.SecurityQ2" required>
+                  <option ng-repeat="q in regCtrl.questions">{{q}}</option>
+                </select>
+                <input type="text" id="a2" name="a2" ng-model="regCtrl.SecurityA2" required ng-minlength="1" ng-pattern="/^[a-zA-Z]*$/"
+                />
+                <p ng-show="(registerForm.a2.$dirty || submitted) && registerForm.a2.$error.required">You must enter answer</p>
+                <p ng-show="registerForm.a2.$error.pattern">Answer should contains letters only!</p>
+              </div>       
 
-            <button type="submit" id="submitRegBtn" ng-disabled="(registerForm.$invalid || regCtrl.chosenCategories.length < 2)">Register</button>
-          </form>
+              <button type="submit" id="submitRegBtn" ng-disabled="(registerForm.$invalid || regCtrl.chosenCategories.length < 2)">Register</button>
+            </form>
+          <!-- <br>
+          <br>
+          <br> -->
+          </div>
+        </div>
     </div>

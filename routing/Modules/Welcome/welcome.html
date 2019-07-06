@@ -21,7 +21,7 @@
 
 <div ng-if="$root.isLogin" ng-init="welcmCtrl.getRegUserPois()">
     
-    <h3> You may be interested in these POIs: </h3>
+    <h3> You may be interested in these POIs </h3>
     <div class="row">
         <div class="column" ng-repeat="catPOI in welcmCtrl.poisByCat">
             <img class="poiImage" ng-src="{{catPOI.Picture}}" style="width:100%" data-toggle="modal" data-target="#poiModal" ng-click="welcmCtrl.getPoiInfo(catPOI.ID)">
@@ -29,7 +29,7 @@
         </div>
     </div>
     <br>
-    <h3> Two of your favorite POIs: </h3>
+    <h3> Two of your favorite POIs </h3>
     <div class="row">
         <div class="column" ng-repeat="favPOI in welcmCtrl.favoritePois">
             <img class="poiImage" ng-src="{{favPOI.Picture}}" style="width:100%" data-toggle="modal" data-target="#poiModal" ng-click="welcmCtrl.getPoiInfo(favPOI.ID)">

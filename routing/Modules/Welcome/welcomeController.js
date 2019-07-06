@@ -50,7 +50,6 @@ angular.module("parisApp")
             alert("Something went wrong..")
         })
 
-        // TODO-------------------handle favorites order----------------------------
         httpRequests.get("POIs/private/getFavoritesPOIsOfUser/2")
         .then(function(response){
             self.favoritePois = response.data;
@@ -70,7 +69,5 @@ angular.module("parisApp")
 
     self.login=function(){
         $window.location.href = "#!/login";
-    }
-
-    
+    }    
 }]);

@@ -1,21 +1,17 @@
 <div ng-init = "favCtrl.start()">
-    <div>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
+    <div id="favorites">
+        <h1> Favorite POIs</h1>
         <br></br>
         <center>
-            <b>Sort By:</b>
+            <b style="font-size: 14px">Sort By: </b>
             <select ng-model="favCtrl.sortType" ng-options="item for item in sortTypes" ng-change="favCtrl.setSortType()"></select>
             <br>
             <br>
-            <b>Filter By:</b>
-            <label ng-repeat="cat in favCtrl.categories">
+            <b style="font-size: 18px">Filter By:  </b>
+            <label style="padding-left: 1%; font-size: 16px;" ng-repeat="cat in favCtrl.categories">
                 <input type="checkbox" ng-click="favCtrl.chooseCategories(cat.ID,$event)" ng-checked="favCtrl.categories.indexOf(cat.ID)"> {{cat.Name}}
             </label>
         </center>
-        <br></br>
         <br></br>
         <div ng-if="favCtrl.sortBy == 'Rank'" ng-repeat="poi in favCtrl.filteredPOIs | orderBy: favCtrl.sortBy : true">
                 <div>
@@ -24,17 +20,14 @@
                         <center><img ng-src="{{poi.Picture}}" style="width:50%" data-toggle="modal" data-target="#poiModal" ng-click="favCtrl.getPoiInfo(poi.ID)"></center>  
                         <!-- <center><span ng-if="favCtrl.chosenCategories.length == 4" ng-click="moveUp($index)" class="glyphicon glyphicon-arrow-up"></span></center>
                         <center><span ng-if="favCtrl.chosenCategories.length == 4" ng-click="moveDown($index)" class="glyphicon glyphicon-arrow-down"></span></center> -->
-                        <center><button ng-click="favCtrl.removeFromFavorites(poi.ID);">Remove From Favorites</button></center>
+                        <center><button ng-click="favCtrl.removeFromFavorites(poi.ID);" id="removeFavoriteBtn">Remove From Favorites</button></center>
                         <br>
                         <br>
                         <!-- <center><select >
                             <option value="default">Select item's priority</option>
                             <option ng-repeat="priority in favCtrl.priorities" value="priority">{{priority}}</option>
-                          </select></center> -->
-                          
+                          </select></center> --> 
                 </div>
-         
-
             </div>
 
 
@@ -45,32 +38,25 @@
                             <center><img ng-src="{{poi.Picture}}" style="width:50%" data-toggle="modal" data-target="#poiModal" ng-click="favCtrl.getPoiInfo(poi.ID)"></center>  
                             <center><span ng-if="favCtrl.chosenCategories.length == 4" ng-click="moveUp($index)" class="glyphicon glyphicon-arrow-up"></span></center>
                             <center><span ng-if="favCtrl.chosenCategories.length == 4" ng-click="moveDown($index)" class="glyphicon glyphicon-arrow-down"></span></center>
-                            <center><button ng-click="favCtrl.removeFromFavorites(poi.ID);">Remove From Favorites</button></center>
+                            <center><button ng-click="favCtrl.removeFromFavorites(poi.ID);" id="removeFavoriteBtn">Remove From Favorites</button></center>
                             <br>
                             <br>
                             <!-- <center><select >
                                 <option value="default">Select item's priority</option>
                                 <option ng-repeat="priority in favCtrl.priorities" value="priority">{{priority}}</option>
-                              </select></center> -->
-                              
+                              </select></center> -->                              
                     </div>
-             
-    
                 </div>
-
-            <center><button ng-if="favCtrl.chosenCategories.length == 4" ng-click="favCtrl.saveChanges()">Save Changes</button></center>
-
+            <center><button ng-if="favCtrl.chosenCategories.length == 4" ng-click="favCtrl.saveChanges()" id="saveChangesBtn">Save Changes</button></center>
+            <br>
+            <br>
     </div>
-
-
-
 </div>
 
 
 
-
+<!-- poiModal -->
 <div class="container">
-        <!-- Modal -->
         <div class="modal fade" id="poiModal" role="dialog">
           <div class="modal-dialog">
           

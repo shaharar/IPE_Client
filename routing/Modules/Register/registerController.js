@@ -18,8 +18,6 @@ angular.module("parisApp")
             }
             self.questions = SecQuestions;
         }, function(response){
-             //------------TODO OPTIONAL handle error------------------------
-
         });
     }
 
@@ -28,7 +26,6 @@ angular.module("parisApp")
         .then (function (response){
             self.categories = response.data;
         }, function(response){
-             //------------TODO OPTIONAL handle error------------------------
         });
     }
 
@@ -55,7 +52,6 @@ angular.module("parisApp")
     }
     
     self.register=function(){
-        console.log("enter register")
         if(self.SecurityQ1 == self.SecurityQ2){
             alert("Please choose different security questions");
             return;
@@ -74,12 +70,10 @@ angular.module("parisApp")
             SecurityA2 : self.SecurityA2,
             Categories : self.chosenCategories
         };
-        console.log(userDetails)
-        //-------------TODO registration details validation-----------------------
        httpRequests.post("Users/register",userDetails)
        .then(function(response){
            if (response.data.message == "Username already exists, please choose another one"){
-               alert("This username already exists, please choose another one")
+            alert("This username already exists, please choose another one")
            }
            else if (response.data.message == "Registration succeeded"){
                alert("User was added successfully");

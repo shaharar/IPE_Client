@@ -12,22 +12,18 @@
             </div>
             <br>
             <div class="logContainer">
-                <!-- <left> -->
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                         <input type="text" id="loginUsername" class="form-control" ng-model="logCtrl.currUser.Username" placeholder="Enter Username" name="username" required> 
                     </div>
-                    <!-- <label for="username"><b>Username: </b></label> -->
                     <br>
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                         <input type="password" class="form-control" id="loginPsw" ng-model="logCtrl.currUser.Password" placeholder="Enter Password" name="psw" >
                     </div>
-                    <!-- <label for="psw"><b>Password: </b></label> -->
                     <br>
                     <br>
                     <button type="submit" class="submitLogBtn" ng-click="logCtrl.login()">Login</button>
-                <!-- </left> -->
             </div>
             <br>
             <br>
