@@ -13,11 +13,11 @@
         <nav>
             <img ng-src="/images/eiffel2.png" style="width:1.6%;">
             <li><a style="color:black; font-size: 145%">Hello {{$root.username}} </a></li>
-            <li><a href="#!/">Home</a></li>
-            <li><a href="#!/poi">POIs</a></li>
-            <li><a href="#!/about">About</a></li>
-            <li><a ng-if="!$root.isLogin" href="#!/login">Login</a></li>
-            <li><a ng-if="$root.isLogin" ng-click="idxCtrl.logout()" href="#/">Logout</a></li>
+            <li><a href="#!/" style="color: white; text-decoration: none">Home</a></li>
+            <li><a href="#!/poi" style="color: white; text-decoration: none">POIs</a></li>
+            <li><a href="#!/about" style="color: white; text-decoration: none">About</a></li>
+            <li><a ng-if="!$root.isLogin" href="#!/login" style="color: white; text-decoration: none">Login</a></li>
+            <li><a ng-if="$root.isLogin" ng-click="idxCtrl.logout()" href="#/" style="color: white; text-decoration: none">Logout</a></li>
             <img ng-src="/images/croissant2.png" style="width:3.5%;">
         </nav>
         
