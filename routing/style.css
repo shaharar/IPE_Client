@@ -52,7 +52,7 @@ a:hover{
 
 /* --------------------------Welcome-------------------------- */
 #welcome{
-	margin-top: 6%;
+	margin-top: 5%;
 }
 
 #welcome h1{
@@ -77,11 +77,11 @@ a:hover{
 
 #welcome p{
 	/* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
-	font-size: 100%;
+	font-size: 135%;
 }
 
 #randomPois{
-	margin-top: 2%;
+	margin-top: 1.8%;
 }
 
 /* Welcome Buttons */
